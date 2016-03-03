@@ -1,0 +1,5 @@
+D:\Doan\SourceCode\Workspace\Commons\bin\Debug\Commons.dll
+D:\Doan\SourceCode\Workspace\Commons\bin\Debug\Commons.pdb
+D:\Doan\SourceCode\Workspace\Commons\obj\Debug\Commons.csprojResolveAssemblyReference.cache
+D:\Doan\SourceCode\Workspace\Commons\obj\Debug\Commons.dll
+D:\Doan\SourceCode\Workspace\Commons\obj\Debug\Commons.pdb

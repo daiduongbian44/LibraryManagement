@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9C26A72E-4E2E-46C1-A3BD-553549364064}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebBackend</RootNamespace>
+    <AssemblyName>WebBackend</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\Sections\authentication\authService.js" />
+    <Content Include="app\Sections\authentication\login\login.html" />
+    <Content Include="app\Sections\authentication\login\loginController.js" />
+    <Content Include="app\Sections\authentication\signup\signup.html" />
+    <Content Include="app\Sections\authentication\signup\signupController.js" />
+    <Content Include="app\Sections\dashboard\controllers\mainController.js" />
+    <Content Include="app\Sections\dashboard\directives\header\header-notification\header-notification.html" />
+    <Content Include="app\Sections\dashboard\directives\header\header-notification\header-notification.js" />
+    <Content Include="app\Sections\dashboard\directives\header\header.html" />
+    <Content Include="app\Sections\dashboard\directives\header\header.js" />
+    <Content Include="app\Sections\dashboard\directives\notifications\notifications.html" />
+    <Content Include="app\Sections\dashboard\directives\notifications\notifications.js" />
+    <Content Include="app\Sections\dashboard\directives\sidebar\sidebar-search\sidebar-search.html" />
+    <Content Include="app\Sections\dashboard\directives\sidebar\sidebar-search\sidebar-search.js" />
+    <Content Include="app\Sections\dashboard\directives\sidebar\sidebar.html" />
+    <Content Include="app\Sections\dashboard\directives\sidebar\sidebar.js" />
+    <Content Include="app\Sections\dashboard\directives\stats\stats.html" />
+    <Content Include="app\Sections\dashboard\directives\stats\stats.js" />
+    <Content Include="app\Sections\dashboard\directives\timeline\timeline.html" />
+    <Content Include="app\Sections\dashboard\directives\timeline\timeline.js" />
+    <Content Include="app\Sections\dashboard\views\home.html" />
+    <Content Include="app\Sections\QT10\view.html" />
+    <Content Include="app\Sections\QT110\view.html" />
+    <Content Include="app\Sections\QT130\view.html" />
+    <Content Include="app\Sections\QT150\view.html" />
+    <Content Include="app\Sections\QT170\view.html" />
+    <Content Include="app\Sections\QT30\view.html" />
+    <Content Include="app\Sections\QT50\view.html" />
+    <Content Include="app\Sections\QT70\view.html" />
+    <Content Include="app\Sections\QT90\view.html" />
+    <Content Include="app\Sections\samplePages\chart.html" />
+    <Content Include="app\Sections\samplePages\chartController.js" />
+    <Content Include="app\Sections\samplePages\form.html" />
+    <Content Include="app\Sections\samplePages\formController.js" />
+    <Content Include="app\Sections\samplePages\pages\blank.html" />
+    <Content Include="app\Sections\samplePages\pages\login.html" />
+    <Content Include="app\Sections\samplePages\table.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\buttons.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\grid.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\icons.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\notifications.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\panels-wells.html" />
+    <Content Include="app\Sections\samplePages\ui-elements\typography.html" />
+    <Content Include="app\Shared\DashboardLayout.html" />
+    <Content Include="bower_components\angular-animate\angular-animate.js" />
+    <Content Include="bower_components\angular-bootstrap\ui-bootstrap-tpls.min.js" />
+    <Content Include="bower_components\angular-chart.js\angular-chart.css" />
+    <Content Include="bower_components\angular-chart.js\angular-chart.min.js" />
+    <Content Include="bower_components\angular-cookies\angular-cookies.js" />
+    <Content Include="bower_components\angular-datatables\angular-datatables.bootstrap.js" />
+    <Content Include="bower_components\angular-datatables\angular-datatables.fixedcolumns.js" />
+    <Content Include="bower_components\angular-datatables\angular-datatables.js" />
+    <Content Include="bower_components\angular-datatables\angular-datatables.scroller.js" />
+    <Content Include="bower_components\angular-datatables\angular-datatables.tabletools.js" />
+    <Content Include="bower_components\angular-datatables\copy_csv_xls_pdf.swf" />
+    <Content Include="bower_components\angular-datatables\datatables.bootstrap.css" />
+    <Content Include="bower_components\angular-datatables\dataTables.fixedColumns.css" />
+    <Content Include="bower_components\angular-datatables\dataTables.fixedColumns.js" />
+    <Content Include="bower_components\angular-datatables\dataTables.tableTools.css" />
+    <Content Include="bower_components\angular-datatables\dataTables.tableTools.js" />
+    <Content Include="bower_components\angular-datatables\images\sort_asc.png" />
+    <Content Include="bower_components\angular-datatables\images\sort_asc_disabled.png" />
+    <Content Include="bower_components\angular-datatables\images\sort_both.png" />
+    <Content Include="bower_components\angular-datatables\images\sort_desc.png" />
+    <Content Include="bower_components\angular-datatables\images\sort_desc_disabled.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\background.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\collection.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\collection_hover.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\copy.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\copy_hover.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\csv.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\csv_hover.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\pdf.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\pdf_hover.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\print.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\print_hover.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\xls.png" />
+    <Content Include="bower_components\angular-datatables\images\TableTools\xls_hover.png" />
+    <Content Include="bower_components\angular-datatables\jquery.dataTables.css" />
+    <Content Include="bower_components\angular-datatables\jquery.dataTables.js" />
+    <Content Include="bower_components\angular-loading-bar\loading-bar.css" />
+    <Content Include="bower_components\angular-loading-bar\loading-bar.js" />
+    <Content Include="bower_components\angular-modal\angular-modal-service.js" />
+    <Content Include="bower_components\angular-perfect-scrollbar\angular-perfect-scrollbar.js" />
+    <Content Include="bower_components\angular-perfect-scrollbar\perfect-scrollbar.min.css" />
+    <Content Include="bower_components\angular-perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="bower_components\angular-perfect-scrollbar\perfect-scrollbar.with-mousewheel.min.js" />
+    <Content Include="bower_components\angular-resource\angular-resource.js" />
+    <Content Include="bower_components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="bower_components\angular-select2\angular-ui-select2\select2.js" />
+    <Content Include="bower_components\angular-select2\select2-spinner.gif" />
+    <Content Include="bower_components\angular-select2\select2.css" />
+    <Content Include="bower_components\angular-select2\select2.js" />
+    <Content Include="bower_components\angular-select2\select2.png" />
+    <Content Include="bower_components\angular-selection-model\selection-model.js" />
+    <Content Include="bower_components\angular-toggle-switch\angular-toggle-switch.css" />
+    <Content Include="bower_components\angular-toggle-switch\angular-toggle-switch.min.js" />
+    <Content Include="bower_components\angular-tooltips\angular-tooltips.min.css" />
+    <Content Include="bower_components\angular-tooltips\angular-tooltips.min.js" />
+    <Content Include="bower_components\angular-touch\angular-touch.js" />
+    <Content Include="bower_components\angular-ui-router\angular-ui-router.min.js" />
+    <Content Include="bower_components\angular\angular.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\bootstrap\bootstrap.min.css" />
+    <Content Include="bower_components\bootstrap\bootstrap.min.js" />
+    <Content Include="bower_components\Chart.js\Chart.min.js" />
+    <Content Include="bower_components\font-awesome\font-awesome.min.css" />
+    <Content Include="bower_components\fonts\fontawesome-webfont.svg" />
+    <Content Include="bower_components\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bower_components\jquery\jquery.blockUI.js" />
+    <Content Include="bower_components\jquery\jquery.caret-1.5.0.js" />
+    <Content Include="bower_components\jquery\jquery.min.js" />
+    <Content Include="bower_components\jquery\jquery.price_format.2.0.js" />
+    <Content Include="bower_components\json3\json3.min.js" />
+    <Content Include="bower_components\metisMenu\metisMenu.min.css" />
+    <Content Include="bower_components\metisMenu\metisMenu.min.js" />
+    <Content Include="bower_components\oclazyload\ocLazyLoad.min.js" />
+    <Content Include="content\css\SbAdmin\main.css" />
+    <Content Include="content\css\SbAdmin\sb-admin-2.css" />
+    <Content Include="content\css\SbAdmin\timeline.css" />
+    <Content Include="content\images\hust%402x.jpg" />
+    <Content Include="content\images\hust.jpg" />
+    <Content Include="content\images\loading.gif" />
+    <Content Include="Global.asax" />
+    <Content Include="index.html" />
+    <Content Include="scripts\angular-local-storage.min.js" />
+    <Content Include="scripts\authComplete.js" />
+    <Content Include="scripts\sb-admin-2.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuthenController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bower_components\angular-tooltips\angular-tooltips.sourcemap.map" />
+    <Content Include="bower_components\angular\angular.min.js.map" />
+    <Content Include="bower_components\fonts\fontawesome-webfont.eot" />
+    <Content Include="bower_components\fonts\fontawesome-webfont.ttf" />
+    <Content Include="bower_components\fonts\fontawesome-webfont.woff" />
+    <Content Include="bower_components\fonts\fontawesome-webfont.woff2" />
+    <Content Include="bower_components\fonts\FontAwesome.otf" />
+    <Content Include="bower_components\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bower_components\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bower_components\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bower_components\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower_components\jquery\jquery.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="bower_components\angular\angular.d.ts" />
+    <TypeScriptCompile Include="bower_components\angular\jquery.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLLs\BLLs.csproj">
+      <Project>{b08626cf-e27b-4fcd-8528-ba8f76e67eab}</Project>
+      <Name>BLLs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Commons\Commons.csproj">
+      <Project>{4a2f891d-f584-411a-8ca7-1986c8324f0e}</Project>
+      <Name>Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{8922c623-845f-42f0-9e05-9aafc836a491}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4674</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4668/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

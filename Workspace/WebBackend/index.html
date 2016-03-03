@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html class="no-js" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Hệ thống quản lý thư viện</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <style type="text/css">
+        div.blockMsg {
+            width:  30%;
+            top:    35%;
+            left:   35%;
+            text-align: center;
+            font-size: 14pt;
+            background-color: blue;
+            border: none;
+            border-radius: 25px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; 
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); 
+            -moz-opacity:.70;
+            opacity:.70;
+            padding: 15px;
+            color: #fff;
+        }
+    </style>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="bower_components/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="content/css/SbAdmin/sb-admin-2.css">
+    <link rel="stylesheet" href="content/css/SbAdmin/timeline.css">
+    <link rel="stylesheet" href="content/css/SbAdmin/main.css">
+
+    <link rel="stylesheet" href="bower_components/metisMenu/metisMenu.min.css">
+
+    <!--<link rel="stylesheet" href="bower_components/angular-block-ui/angular-block-ui.css">-->
+
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/loading-bar.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/angular-perfect-scrollbar/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="bower_components/angular-tooltips/angular-tooltips.min.css">
+    <link rel="stylesheet" href="bower_components/angular-datatables/dataTables.fixedColumns.css" />
+
+    <!-- 3rd party libraries -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/jquery/jquery.blockUI.js"></script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    <script src="bower_components/bootstrap/bootstrap.min.js"></script>
+    <script src="bower_components/angular-ui-router/angular-ui-router.min.js"></script>
+    <script src="bower_components/json3/json3.min.js"></script>
+    <script src="bower_components/oclazyload/ocLazyLoad.min.js"></script>
+
+    <script src="bower_components/jquery/jquery.blockUI.js"></script>
+
+    <script src="bower_components/jquery/jquery.price_format.2.0.js"></script>
+    <script src="bower_components/jquery/jquery.caret-1.5.0.js"></script>
+
+    <script src="bower_components/angular-loading-bar/loading-bar.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/metisMenu/metisMenu.min.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="bower_components/angular-perfect-scrollbar/perfect-scrollbar.with-mousewheel.min.js"></script>
+    <script src="bower_components/angular-perfect-scrollbar/angular-perfect-scrollbar.js"></script>
+    <script src="bower_components/angular-tooltips/angular-tooltips.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-modal/angular-modal-service.js"></script>
+
+    <!--Load LocalStorage module file-->
+    <script src="scripts/angular-local-storage.min.js"></script>
+
+    <!--Load Select2 module files-->
+    <script src="bower_components/angular-select2/select2.js"></script>
+    <script src="bower_components/angular-select2/angular-ui-select2/select2.js"></script>
+    <link href="bower_components/angular-select2/select2.css" rel="stylesheet" />
+    <script src="bower_components/angular-selection-model/selection-model.js"></script>
+
+    <!--Load Datatables module files-->
+    <script src="bower_components/angular-datatables/angular-datatables.js"></script>
+    <script src="bower_components/angular-datatables/jquery.dataTables.js"></script>
+    <link href="bower_components/angular-datatables/datatables.bootstrap.css" rel="stylesheet" />
+    <link href="bower_components/angular-datatables/jquery.dataTables.css" rel="stylesheet" />
+    <script src="bower_components/angular-datatables/dataTables.tableTools.js"></script>
+    <script src="bower_components/angular-datatables/angular-datatables.tabletools.js"></script>
+    <link href="bower_components/angular-datatables/dataTables.tableTools.css" rel="stylesheet" />
+    <script src="bower_components/angular-datatables/angular-datatables.bootstrap.js"></script>
+    <script src="bower_components/angular-datatables/angular-datatables.scroller.js"></script>
+    <script src="bower_components/angular-datatables/angular-datatables.fixedcolumns.js"></script>
+    <script src="bower_components/angular-datatables/dataTables.fixedColumns.js"></script>
+
+    <!-- Load app main script -->
+    <script src="app/app.js"></script>
+    <script src="scripts/sb-admin-2.js"></script>
+
+    <!-- Load authService -->
+    <script src="app/Sections/authentication/authService.js"></script>
+
+</head>
+<body>
+    <div ng-app="LibManageApp">
+        <div ui-view></div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(document).on('show.bs.modal', '.modal', function () {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function () {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+
+    $(document).on('hidden.bs.modal', '.modal', function () {
+        $('.modal:visible').length && $(document.body).addClass('modal-open');
+    });
+
+</script>
+

@@ -1,0 +1,5 @@
+D:\Doan\SourceCode\Workspace\Models\bin\Debug\Models.dll
+D:\Doan\SourceCode\Workspace\Models\bin\Debug\Models.pdb
+D:\Doan\SourceCode\Workspace\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+D:\Doan\SourceCode\Workspace\Models\obj\Debug\Models.dll
+D:\Doan\SourceCode\Workspace\Models\obj\Debug\Models.pdb

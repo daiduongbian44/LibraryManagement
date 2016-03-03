@@ -1,0 +1,13 @@
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\DALs.dll
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\DALs.pdb
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Commons.dll
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Dapper.dll
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Dapper.Mapper.dll
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Models.dll
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Commons.pdb
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Models.pdb
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Dapper.pdb
+D:\Doan\SourceCode\Workspace\DALs\bin\Debug\Dapper.xml
+D:\Doan\SourceCode\Workspace\DALs\obj\Debug\DALs.csprojResolveAssemblyReference.cache
+D:\Doan\SourceCode\Workspace\DALs\obj\Debug\DALs.dll
+D:\Doan\SourceCode\Workspace\DALs\obj\Debug\DALs.pdb

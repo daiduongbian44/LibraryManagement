@@ -1,0 +1,61 @@
+﻿<div class="row">
+    <div class="col-md-5 right-content">
+        <img src="content/images/hust@2x.jpg" alt="logo" class="img-logo-login" />
+    </div>
+
+    <div class="col-md-6">
+        <form role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="form-login-heading">Đăng ký hệ thống</h2>
+
+                    <div class="form-group">
+                        <label for="idUsername">Tên đăng nhập</label>
+                        <input id="idUsername" type="text" class="form-control" data-ng-model="user.userName" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idPassword">Mật khẩu</label>
+                        <input id="idPassword" type="password" class="form-control" data-ng-model="user.password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idRePassword">Nhập lại mật khẩu</label> 
+                        <input id="idRePassword" type="password" class="form-control" data-ng-model="user.repassword" data-ng-change="changeRePassword()" required>
+                        <div class="alert alert-danger" id="text-error-matching-password">Mật khẩu không trùng khớp.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idRePassword">Thư điện tử</label>
+                        <input id="idRePassword" type="password" class="form-control" data-ng-model="user.email" required>
+                    </div>
+                    <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">Đăng ký</button>
+                    <div data-ng-hide="message == ''" class="alert alert-danger">
+                        {{message}}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<style type="text/css">
+    .right-content {
+        text-align: right;
+    }
+
+    .img-logo-login {
+        height: 240px;
+        margin-top: 20px;
+    }
+    .text-red {
+        color: red;
+    }
+</style>
