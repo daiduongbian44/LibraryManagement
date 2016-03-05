@@ -1,5 +1,6 @@
 Workspace/packages/
 Workspace/WebBackend/bin/
+Workspace/WebBackend/obj/
 Workspace/BLLs/bin
 Workspace/BLLs/obj
 Workspace/DALs/bin
