@@ -1,6 +1,10 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'ngAuthSettings', 'authService',
-    function ($scope, $location, ngAuthSettings, authService) {
+
+angular.module('LibManageApp').controller('loginController', loginController);
+
+loginController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authService'];
+
+function loginController($scope, $location, ngAuthSettings, authService) {
 
     $scope.loginData = {
         username: "manh",
@@ -19,4 +23,4 @@ app.controller('loginController', ['$scope', '$location', 'ngAuthSettings', 'aut
             }
         );
     };
-}]);
+}
