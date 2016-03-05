@@ -97,11 +97,15 @@ app.config([
             templateUrl: 'app/Sections/authentication/signup/signup.html',
             url: '/signup',
             controller: 'signupController',
+            data: { requireLogin: false },
             resolve: {
                 loadMyFile: function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
                         name: 'LibManageApp',
-                        files: ['app/Sections/authentication/signup/signupController.js']
+                        files: [
+                            'app/Sections/authentication/signup/signupController.js',
+                            'app/Sections/authentication/signup/signupService.js'
+                        ]
                     });
                 }
             }
@@ -153,56 +157,43 @@ app.config([
 // Declare some constants for whole app
 // This is uri of our Api Restful service
 var serviceBase = "http://localhost:4668/";
+
 app.constant('ngAuthSettings', {
-    apiServiceBaseUri: serviceBase,
-    clientId: 'LibManage'
+    apiServiceBaseUri: serviceBase
+});
+
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
 });
 
 app.run([
     'authService', function (authService) {
-        authService.SaveUser({
-            UserName: "manh",
-            PassWord: "123",
-            RoleID: 1,
-            StatusTypeID: 1,
-            FirstName: "manh",
-            LastName: "nguyen",
-            Address: "hanoi",
-            PhoneNumber: "123",
-            Email: "Email",
-            ImageURL: "image.jpg"
-        })
-        .then(function (data) {
-            console.log("Data");
-            console.log(data);
-        }, function (error) {
-            console.log(error);
-        });
+        authService.FillData();
     }]);
 
 app.run(['$rootScope', 'authService', '$state', function ($rootScope, authService, $state) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
         // Do something when $state changed
-        //if (authService.authentication.isAuth)
-        //    return;
+        if (authService.authentication.isAuth)
+            return;
 
-        //var requireLogin = toState.data.requireLogin;
-        //if (requireLogin == 'undefined') {
-        //    requireLogin = false;
-        //}
-        //if (requireLogin) {
-        //    event.preventDefault();
-        //    $state.transitionTo('login');
-        //}
+        var requireLogin = toState.data.requireLogin;
+        if (requireLogin == 'undefined') {
+            requireLogin = false;
+        }
+        if (requireLogin) {
+            event.preventDefault();
+            $state.transitionTo('login');
+        }
     });
 }]);
 
 
-app.run(function ($rootScope, $templateCache) {
-    $rootScope.$on('$viewContentLoaded', function () {
-        $templateCache.removeAll();
-    });
-});
+//app.run(function ($rootScope, $templateCache) {
+//    $rootScope.$on('$viewContentLoaded', function () {
+//        $templateCache.removeAll();
+//    });
+//});
 
 //
 //Set option for all Datatables

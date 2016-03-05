@@ -7,13 +7,35 @@ using System.Web.Http;
 using BLLs;
 using Commons;
 using Models.User;
+using WebBackend.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebBackend.Controllers
 {
     [RoutePrefix("api/authen")]
     public class AuthenController : ApiController
     {
+        [AllowAnonymous]
+        public IHttpActionResult CheckUserExist(UserExisted user)
+        {
+            var result = new ApiResult()
+            {
+                Status = Constant.API_RESULT_SUCCESS,
+                Data = null
+            };
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = ex.Message; 
+            }
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
         [Route("saveuser")]
         [HttpPost]
         public IHttpActionResult SaveUser(UserModel user)
@@ -23,10 +45,20 @@ namespace WebBackend.Controllers
                 Status = Constant.API_RESULT_SUCCESS,
                 Data = null
             };
+            try
+            {
+                // Hash password before save to db
+                PasswordHasher hasher = new PasswordHasher();
+                user.PassWord = hasher.HashPassword(user.PassWord);
 
-            // add user
-            // UserBLL bll = new UserBLL();
-            // bll.SaveUser(user);
+                UserBLL bll = new UserBLL();
+                bll.SaveUser(user);
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = ex.Message;
+            }
 
             return Ok(result);
         }

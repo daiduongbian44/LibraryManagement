@@ -1,23 +1,22 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$location', 'ngAuthSettings', function ($scope, $location, ngAuthSettings) {
+app.controller('loginController', ['$scope', '$location', 'ngAuthSettings', 'authService',
+    function ($scope, $location, ngAuthSettings, authService) {
 
     $scope.loginData = {
-        userName: "manh",
+        username: "manh",
         password: "123456"
     };
 
     $scope.message = "";
 
     $scope.login = function () {
-        $scope.message = "Error";
-
-        console.log($scope.loginData);
-
-        //authService.login($scope.loginData).then(function (response) {
-        //    $location.path('/dashboard/home');
-        //},
-        //function (err) {
-        //    $scope.message = err.error_description;
-        //});
+        authService.Login($scope.loginData).then(
+            function (response) {
+                $location.path('/dashboard/home');
+            },
+            function (err) {
+                $scope.message = "Tên đăng nhập hoặc mật khẩu không hợp lệ.";
+            }
+        );
     };
 }]);

@@ -13,12 +13,15 @@ app.directive('headerNotification', ['authService', 'localStorageService', funct
             scope: {
             },
             controller: function ($scope) {
-                $scope.logOut = authService.logOut;
+                $scope.logOut = authService.LogOut;
                 var authData = localStorageService.get('authorizationData');
+
+                //console.log(authData);
+
                 $scope.WorkDate = new Date();
 
                 if (authData) {
-                    $scope.UserName = authData.userFullName;
+                    $scope.UserName = authData.UserName;
                 }
             }
     	}
