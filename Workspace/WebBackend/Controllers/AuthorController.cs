@@ -13,9 +13,9 @@ namespace WebBackend.Controllers
     public class AuthorController : ApiController
     {
         [Authorize]
-        [Route("getauthor")]
+        [Route("getauthors")]
         [HttpPost]
-        public IHttpActionResult GetAuthor()
+        public IHttpActionResult GetAuthors()
         {
             var listAuthor = new List<string>();
             listAuthor.Add("Manh");

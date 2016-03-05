@@ -162,9 +162,9 @@ app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase
 });
 
-app.config(function ($httpProvider) {
+app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
-});
+}]);
 
 app.run([
     'authService', function (authService) {
