@@ -30,7 +30,7 @@
             $scope.GridListItem = null;
             authorService.GetAllAuthors().then(
                 function (response) {
-                    console.log(response.data);
+                    //console.log(response.data);
                     $scope.GridListItem = response.data;
                 },
                 function (error) {
@@ -59,11 +59,28 @@
         }
 
         function _clickRow(index) {
-            GridSelectedIndex = index;
+            $scope.GridSelectedIndex = index;
         }
 
         function _editItem(item) {
-
+            $ocLazyLoad.load({
+                name: 'LibManageApp',
+                files:
+                [
+                    'app/Sections/QT50/edit/controller.js',
+                ]
+            }).then(function () {
+                $modal.open({
+                    templateUrl: "app/Sections/QT50/edit/view.html",
+                    controller: 'editAuthorController',
+                    size: "lg",
+                    resolve: {
+                        AuthorObject: function () {
+                            return item;
+                        }
+                    }
+                });
+            });
         }
 
         function _deleteItem(item, index) {
@@ -97,5 +114,20 @@
                 }
             );
         });
+        
+        // receive an event from modal and save author
+        $scope.$on("EDIT_AUTHOR", function (event, dt) {
+            //console.log(dt);
+            authorService.SaveAuthor(dt.data).then(
+                function (res) {
+                    _loadData();
+                    alert("Sửa tác giả thành công.");
+                },
+                function (error) {
+                    alert("Xảy ra lỗi khi thêm tác giả.");
+                }
+            );
+        });
+
     }
 })();
