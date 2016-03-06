@@ -17,6 +17,7 @@
 
         function _fnCloseModal() {
             $modalInstance.dismiss('cancel');
+
         }
 
         function _fnSave() {
