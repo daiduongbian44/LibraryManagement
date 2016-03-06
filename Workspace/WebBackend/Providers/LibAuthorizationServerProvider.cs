@@ -4,6 +4,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,53 +14,68 @@ namespace WebBackend.Providers
 {
     public class LibAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
-        #pragma warning disable CS1998
+#pragma warning disable CS1998
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-        #pragma warning restore CS1998
+#pragma warning restore CS1998
         {
             context.Validated();
         }
 
 
-        #pragma warning disable CS1998
+#pragma warning disable CS1998
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-        #pragma warning restore CS1998
+#pragma warning restore CS1998
         {
-
+            string[] roleIDMangements = ConfigurationManager.AppSettings["RoleIDMangement"].Split(';');
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             UserBLL bll = new UserBLL();
-            var userPassword = bll.GetPasswordUserAdmin(context.UserName); 
+            var userPassword = bll.GetPasswordUserAdmin(context.UserName);
 
-            if (string.IsNullOrEmpty(userPassword))
+            if (userPassword == null)
             {
                 context.SetError("invalid_grant", "The username is incorrect.");
                 return;
             }
-
-            PasswordHasher hasher = new PasswordHasher();
-            if(hasher.VerifyHashedPassword(userPassword, context.Password) == PasswordVerificationResult.Success)
-            {
-                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                var user = bll.GetUserByUserName(context.UserName);
-
-                identity.AddClaim(new Claim("UserName", user.UserName));
-                identity.AddClaim(new Claim("UserId", user.UserID.ToString()));
-
-                var props = new AuthenticationProperties(new Dictionary<string, string>
-                {
-                    { "UserName", context.UserName},
-                    { "UserId", user.UserID.ToString()}
-                });
-
-                var ticket = new AuthenticationTicket(identity, props);
-                context.Validated(ticket);
-            }
             else
             {
-                context.SetError("invalid_grant", "The password is incorrect.");
-                return;
+                if (!Array.Exists(roleIDMangements, role => role.Equals(userPassword.RoleID.ToString())))
+                {
+                    context.SetError("invalid_grant", "Bạn không có quyền để truy cập trang này!");
+                    return;
+                }
+                else
+                {
+                    PasswordHasher hasher = new PasswordHasher();
+                    if (hasher.VerifyHashedPassword(userPassword.PasswordHash, context.Password) == PasswordVerificationResult.Success)
+                    {
+                        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                        var user = bll.GetUserByUserName(context.UserName);
+
+
+                        //update last logint
+                        bll.UpdateLastLogin(user.UserID);
+
+                        identity.AddClaim(new Claim("UserName", user.UserName));
+                        identity.AddClaim(new Claim("UserId", user.UserID.ToString()));
+
+                        var props = new AuthenticationProperties(new Dictionary<string, string>
+                            {
+                                { "UserName", context.UserName},
+                                { "UserId", user.UserID.ToString()}
+                            });
+
+                        var ticket = new AuthenticationTicket(identity, props);
+                        context.Validated(ticket);
+                    }
+                    else
+                    {
+                        context.SetError("invalid_grant", "The password is incorrect.");
+                        return;
+                    }
+                }
             }
+
         }
 
     }

@@ -39,11 +39,32 @@ namespace DALs
         }
 
         /// <summary>
+        /// Update lastlogin datetime of user
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateLastLogin(long userID)
+        {
+            const string procName = "scr_Update_LastLogin";
+            try
+            {                
+                var param = new DynamicParameters();
+                param.Add("@UserID", userID);
+                var con = DatabaseContext.getInstance().Connection;
+                con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
         /// Return password for an username-admin
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public string GetPasswordUserAdmin(string username)
+        public UserPassword GetPasswordUserAdmin(string username)
         {
             if (string.IsNullOrEmpty(username)) throw new ArgumentException("Username is empty");
             const string procName = "scr_Get_PassWord_ByUserName";
@@ -54,10 +75,10 @@ namespace DALs
 
                 var con = DatabaseContext.getInstance().Connection;
                 var users = con.Query<UserPassword>(procName, param, commandType: CommandType.StoredProcedure);
-                if (users.Count() <= 0) return "";
-                return (users.First()).PasswordHash;
+                if (users.Count() <= 0) return null;
+                return (users.First());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

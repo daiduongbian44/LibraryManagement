@@ -23,7 +23,8 @@
                     //getAuthor();
                 },
                 function (err) {
-                    $scope.message = "Tên đăng nhập hoặc mật khẩu không hợp lệ.";
+                    debugger;
+                    $scope.message = err.message.error_description;
                 }
             );
         };
