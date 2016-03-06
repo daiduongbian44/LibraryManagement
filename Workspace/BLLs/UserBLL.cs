@@ -28,11 +28,21 @@ namespace BLLs
         }
 
         /// <summary>
+        /// Update last logint
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateLastLogin(long userID)
+        {
+
+            _dal.UpdateLastLogin(userID);
+        }
+
+        /// <summary>
         /// Return password for an username-admin
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public string GetPasswordUserAdmin(string username)
+        public UserPassword GetPasswordUserAdmin(string username)
         {
             return _dal.GetPasswordUserAdmin(username);
         }
