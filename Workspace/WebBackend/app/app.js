@@ -15,6 +15,7 @@ var app = angular.module('LibManageApp', [
     'ngResource',
     'angularModalService',
     'selectionModel',
+    'ngFileUpload',
 ]);
 
 // Config Route for sidebar links

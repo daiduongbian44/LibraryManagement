@@ -187,6 +187,8 @@
     <Content Include="app\Sections\QT30\view.html" />
     <Content Include="app\Sections\QT50\authorController.js" />
     <Content Include="app\Sections\QT50\authorService.js" />
+    <Content Include="app\Sections\QT50\create\controller.js" />
+    <Content Include="app\Sections\QT50\create\view.html" />
     <Content Include="app\Sections\QT50\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
@@ -276,6 +278,62 @@
     <Content Include="bower_components\json3\json3.min.js" />
     <Content Include="bower_components\metisMenu\metisMenu.min.css" />
     <Content Include="bower_components\metisMenu\metisMenu.min.js" />
+    <Content Include="bower_components\ng-file-upload\.gitignore" />
+    <Content Include="bower_components\ng-file-upload\demo\C#\UploadController.js" />
+    <Content Include="bower_components\ng-file-upload\demo\pom.xml" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\java\com\df\angularfileupload\CORSFilter.java" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\java\com\df\angularfileupload\FileUpload.java" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\java\com\df\angularfileupload\S3Signature.java" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\resources\META-INF\jdoconfig.xml" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\resources\META-INF\persistence.xml" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\common.css" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\crossdomain.xml" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\donate.html" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\favicon.ico" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\img\tea.jpg" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\img\tea.png" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\index.html" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\FileAPI.flash.swf" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\FileAPI.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\FileAPI.min.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload-all.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload-all.min.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload-shim.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload-shim.min.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-file-upload.min.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-img-crop.css" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\ng-img-crop.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\js\upload.js" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\WEB-INF\appengine-web.xml" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\WEB-INF\web.xml" />
+    <Content Include="bower_components\ng-file-upload\dist\FileAPI.flash.swf" />
+    <Content Include="bower_components\ng-file-upload\dist\FileAPI.js" />
+    <Content Include="bower_components\ng-file-upload\dist\FileAPI.min.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload-all.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload-all.min.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload-shim.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload-shim.min.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload.js" />
+    <Content Include="bower_components\ng-file-upload\dist\ng-file-upload.min.js" />
+    <Content Include="bower_components\ng-file-upload\Gruntfile.js" />
+    <Content Include="bower_components\ng-file-upload\index.js" />
+    <Content Include="bower_components\ng-file-upload\nuget\NuGet.exe" />
+    <Content Include="bower_components\ng-file-upload\src\data-url.js" />
+    <Content Include="bower_components\ng-file-upload\src\drop.js" />
+    <Content Include="bower_components\ng-file-upload\src\exif.js" />
+    <Content Include="bower_components\ng-file-upload\src\FileAPI.flash.swf" />
+    <Content Include="bower_components\ng-file-upload\src\FileAPI.js" />
+    <Content Include="bower_components\ng-file-upload\src\model.js" />
+    <Content Include="bower_components\ng-file-upload\src\resize.js" />
+    <Content Include="bower_components\ng-file-upload\src\select.js" />
+    <Content Include="bower_components\ng-file-upload\src\shim-elem.js" />
+    <Content Include="bower_components\ng-file-upload\src\shim-filereader.js" />
+    <Content Include="bower_components\ng-file-upload\src\shim-upload.js" />
+    <Content Include="bower_components\ng-file-upload\src\upload.js" />
+    <Content Include="bower_components\ng-file-upload\src\validate.js" />
+    <Content Include="bower_components\ng-file-upload\test\index.html" />
+    <Content Include="bower_components\ng-file-upload\test\spec\test.js" />
     <Content Include="bower_components\oclazyload\ocLazyLoad.min.js" />
     <Content Include="content\css\SbAdmin\main.css" />
     <Content Include="content\css\SbAdmin\sb-admin-2.css" />
@@ -291,8 +349,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="bower_components\ng-file-upload\demo\C#\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AuthenController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Models\UserExisted.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\LibAuthorizationServerProvider.cs" />
@@ -315,6 +377,19 @@
     <Content Include="bower_components\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bower_components\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="bower_components\jquery\jquery.min.map" />
+    <Content Include="bower_components\ng-file-upload\.jshintrc" />
+    <Content Include="bower_components\ng-file-upload\demo\C#\UploadHandler.ashx" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\resources\log4j.properties" />
+    <Content Include="bower_components\ng-file-upload\demo\src\main\webapp\WEB-INF\logging.properties" />
+    <Content Include="bower_components\ng-file-upload\LICENSE" />
+    <Content Include="bower_components\ng-file-upload\nuget\build.bat" />
+    <Content Include="bower_components\ng-file-upload\nuget\nuget.sh" />
+    <Content Include="bower_components\ng-file-upload\nuget\Package.nuspec" />
+    <Content Include="bower_components\ng-file-upload\package.json" />
+    <Content Include="bower_components\ng-file-upload\README.md" />
+    <Content Include="bower_components\ng-file-upload\release.sh" />
+    <Content Include="bower_components\ng-file-upload\test\.bowerrc" />
+    <Content Include="bower_components\ng-file-upload\test\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -324,6 +399,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="bower_components\angular\angular.d.ts" />

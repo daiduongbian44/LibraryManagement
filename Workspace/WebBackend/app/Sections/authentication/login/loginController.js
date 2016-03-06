@@ -14,13 +14,13 @@
 
         $scope.message = "";
 
-        getAuthor();
+        //getAuthor();
 
         $scope.login = function () {
             authService.Login($scope.loginData).then(
                 function (response) {
                     $location.path('/dashboard/home');
-                    getAuthor();
+                    //getAuthor();
                 },
                 function (err) {
                     $scope.message = "Tên đăng nhập hoặc mật khẩu không hợp lệ.";

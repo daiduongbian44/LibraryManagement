@@ -39,7 +39,7 @@
 
         // save an author to db
         function _saveAuthor(author) {
-            var defferred = $q.defer();
+            var deferred = $q.defer();
             var url = "/api/author/saveauthor";
 
             $http.post(url,

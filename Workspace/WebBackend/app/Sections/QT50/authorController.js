@@ -2,10 +2,12 @@
     'use strict'
     angular.module('LibManageApp').controller('authorController', authorController);
 
-    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService'];
+    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function authorController($scope, $location, ngAuthSettings, authorService) {
-        $scope.boxsearch.open = true;
+    function authorController($scope, $location, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+        $scope.boxsearch = {
+            open: true,
+        };
 
         _initSearch();
         _loadData();
@@ -28,6 +30,7 @@
             $scope.GridListItem = null;
             authorService.GetAllAuthors().then(
                 function (response) {
+                    console.log(response.data);
                     $scope.GridListItem = response.data;
                 },
                 function (error) {
@@ -41,7 +44,18 @@
         }
 
         function _createAuthor() {
-
+            $ocLazyLoad.load({
+                name: 'LibManageApp',
+                files:
+                [
+                    'app/Sections/QT50/create/controller.js',
+                ]
+            }).then(function () {
+                $modal.open({
+                    templateUrl: "app/Sections/QT50/create/view.html",
+                    controller: 'createAuthorController',
+                });
+            });
         }
 
         function _clickRow(index) {
@@ -58,7 +72,6 @@
 
         $scope.GridDtOptions = DTOptionsBuilder.newOptions()
             .withScroller()
-            .withOption('scrollX', 2000)
             .withBootstrap()
             .withPaginationType('full_numbers') //Paging style
             .withTableTools('bower_components/angular-datatables/copy_csv_xls_pdf.swf') // Using table tools
@@ -70,5 +83,19 @@
                     'aButtons': ['csv', 'xls', 'pdf']
                 }
             ]);
+
+        // receive an event from modal and save author
+        $scope.$on("CREATE_AUTHOR", function (event, dt) {
+            //console.log(dt);
+            authorService.SaveAuthor(dt.data).then(
+                function (res) {
+                    _loadData();
+                    alert("Thêm tác giả thành công.");
+                },
+                function (error) {
+                    alert("Xảy ra lỗi khi thêm tác giả.");
+                }
+            );
+        });
     }
 })();
