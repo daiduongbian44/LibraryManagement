@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorDal.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDal.cs" />

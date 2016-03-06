@@ -11,7 +11,7 @@
 
                     <div class="form-group">
                         <label for="idUsername">Tên đăng nhập</label>
-                        <input id="idUsername" type="text" class="form-control" data-ng-model="user.userName" required autofocus>
+                        <input id="idUsername" type="text" class="form-control" data-ng-model="user.username" required autofocus>
                     </div>
 
                     <div class="form-group">
@@ -27,9 +27,13 @@
 
                     <div class="form-group">
                         <label for="idEmail">Thư điện tử</label>
+<<<<<<< HEAD
                         <input id="idEmail" type="text" class="form-control" data-ng-model="user.email" required>
+=======
+                        <input id="idEmail" type="email" class="form-control" data-ng-model="user.email" required>
+>>>>>>> master
                     </div>
-                    <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">Đăng ký</button>
+                    <button class="btn btn-md btn-info btn-block" type="submit" data-ng-click="signup()">Đăng ký</button>
                     <div data-ng-hide="message == ''" class="alert alert-danger">
                         {{message}}
                     </div>

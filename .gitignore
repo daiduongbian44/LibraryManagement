@@ -1,0 +1,11 @@
+Workspace/packages/
+Workspace/WebBackend/bin/
+Workspace/WebBackend/obj/
+Workspace/BLLs/bin
+Workspace/BLLs/obj
+Workspace/DALs/bin
+Workspace/DALs/obj
+Workspace/Commons/bin
+Workspace/Commons/obj
+Workspace/Models/obj
+Workspace/Models/bin

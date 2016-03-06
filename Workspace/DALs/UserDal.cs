@@ -25,7 +25,7 @@ namespace DALs
             {
                 var xml = Utils.SerializeToXML<UserModel>(user);
                 var param = new DynamicParameters();
-                param.Add("@UserID", 0);
+                param.Add("@UserID", user.UserID);
                 param.Add("@XML", xml);
 
                 param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
@@ -37,5 +37,76 @@ namespace DALs
                 throw;
             }
         }
+
+        /// <summary>
+        /// Return password for an username-admin
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public string GetPasswordUserAdmin(string username)
+        {
+            if (string.IsNullOrEmpty(username)) throw new ArgumentException("Username is empty");
+            const string procName = "scr_Get_PassWord_ByUserName";
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@UserName", username);
+
+                var con = DatabaseContext.getInstance().Connection;
+                var users = con.Query<UserPassword>(procName, param, commandType: CommandType.StoredProcedure);
+                if (users.Count() <= 0) return "";
+                return (users.First()).PasswordHash;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Return password for an email-reader
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public string GetPasswordUserReader(string email)
+        {
+            if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email is empty");
+            return "123456";
+        }
+
+        /// <summary>
+        /// Return an user by UserID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public UserModel GetUserById(int userId)
+        {
+            return new UserModel();
+        }
+
+        /// <summary>
+        /// Return an user by UserName
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public UserModel GetUserByUserName(string username)
+        {
+            return new UserModel() {
+                UserID = 1,
+                UserName = "manh", 
+            };
+        }
+
+        /// <summary>
+        /// Check username and email of insert-update-user must unique
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <returns>Return true if existed user</returns>
+        public bool CheckUserExist(string userName, string email)
+        {
+            return false;
+        }
+
     }
 }

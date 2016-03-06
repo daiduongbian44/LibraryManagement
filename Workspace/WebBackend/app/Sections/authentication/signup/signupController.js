@@ -1,30 +1,52 @@
-﻿'use strict';
-app.controller('signupController', ['$scope', '$location', 'ngAuthSettings', function ($scope, $location, ngAuthSettings) {
+﻿(function () {
+    'use strict';
 
-    $scope.user = {
-    };
+    angular.module('LibManageApp').controller('signupController', signupController);
 
-    $scope.message = "";
-    $("#text-error-matching-password").hide();
+    signupController.$inject = ['$scope', '$location', 'ngAuthSettings', 'signupService'];
 
-    $scope.signup = function () {
+    function signupController($scope, $location, ngAuthSettings, signupService) {
 
-        //authService.login($scope.loginData).then(function (response) {
-        //    $location.path('/dashboard/home');
-        //},
-        //function (err) {
-        //    $scope.message = err.error_description;
-        //});
+        $scope.isValid = false;
+        $scope.message = "";
+        $("#text-error-matching-password").hide();
 
-    };
+        $scope.signup = function () {
+            if ($scope.isValid === false) return;
 
-    $scope.changeRePassword = function () {
-        console.log($scope.user.password);
-        console.log($scope.user.repassword);
-        if ($scope.user.password !== $scope.user.repassword) {
-            $("#text-error-matching-password").show();
-        } else {
-            $("#text-error-matching-password").hide();
+            var user = {
+                UserName: $scope.user.username,
+                PassWord: $scope.user.password,
+                RoleID: 1,
+                StatusTypeID: 1,
+                FirstName: "",
+                LastName: "",
+                Address: "",
+                PhoneNumber: "",
+                Email: $scope.user.email,
+                ImageURL: ""
+            };
+
+            signupService.SaveUser(user).then(
+                function (response) {
+                    console.log(response);
+                    alert("Tai khoan dang duoc xu ly, vui long kiem tra mail");
+                    $location.path('/login');
+                },
+                function (error) {
+                    alert("Xay ra loi trong he thong, kiem tra sau.");
+                }
+            );
+        };
+
+        $scope.changeRePassword = function () {
+            if ($scope.user.password !== $scope.user.repassword) {
+                $("#text-error-matching-password").show();
+                $scope.isValid = false;
+            } else {
+                $("#text-error-matching-password").hide();
+                $scope.isValid = true;
+            }
         }
     }
-}]);
+})();

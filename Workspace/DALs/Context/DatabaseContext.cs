@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DALs.Context
 {
-    public class DatabaseContext
+    public class DatabaseContext : IDisposable
     {
         private string connectionString;
         private SqlConnection con;
@@ -32,6 +32,14 @@ namespace DALs.Context
                 _instance = new DatabaseContext();
             }
             return _instance;
+        }
+
+        public void Dispose()
+        {
+            if(con != null && con.State == System.Data.ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
     }
 }
