@@ -1,4 +1,6 @@
-﻿using Commons;
+﻿using BLLs;
+using Commons;
+using Models.Author;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +19,46 @@ namespace WebBackend.Controllers
         [HttpPost]
         public IHttpActionResult GetAuthors()
         {
-            var listAuthor = new List<string>();
-            listAuthor.Add("Manh");
-            listAuthor.Add("Tuan");
-
+            AuthorBLL bll = new AuthorBLL();
             var result = new ApiResult()
             {
                 Status = Constant.API_RESULT_SUCCESS,
-                Data = listAuthor
             };
+            try
+            {
+                result.Data = bll.GetListAuthors();
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = ex.Message;
+            }
             return Ok(result);
         }
 
+        [HttpPost]
+        [Authorize]
+        [Route("saveauthor")]
+        public IHttpActionResult SaveAuthor(AuthorModel author)
+        {
+            var result = new ApiResult()
+            {
+                Status = Constant.API_RESULT_SUCCESS,
+                Data = null
+            };
+            try
+            {
+                AuthorBLL bll = new AuthorBLL();
+                bll.SaveAuthor(author);
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = ex.Message;
+            }
+
+            return Ok(result);
+        }
 
     }
 }

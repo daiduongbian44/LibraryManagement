@@ -132,7 +132,19 @@ app.config([
             url: '/QT30'
         }).state('dashboard.QT50', {
             templateUrl: 'app/Sections/QT50/view.html',
-            url: '/QT50'
+            url: '/QT50',
+            controller: 'authorController',
+            resolve: {
+                loadMyFile: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'LibManageApp',
+                        files: [
+                            'app/Sections/QT50/authorController.js',
+                            'app/Sections/QT50/authorService.js'
+                        ]
+                    });
+                }
+            }
         }).state('dashboard.QT70', {
             templateUrl: 'app/Sections/QT70/view.html',
             url: '/QT70'

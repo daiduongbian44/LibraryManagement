@@ -185,6 +185,8 @@
     <Content Include="app\Sections\QT150\view.html" />
     <Content Include="app\Sections\QT170\view.html" />
     <Content Include="app\Sections\QT30\view.html" />
+    <Content Include="app\Sections\QT50\authorController.js" />
+    <Content Include="app\Sections\QT50\authorService.js" />
     <Content Include="app\Sections\QT50\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
