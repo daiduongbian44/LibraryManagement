@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict'
-    angular.module('LibManageApp').controller('authorController', authorController);
+    angular.module('LibManageApp').controller('categoryController', categoryController);
 
-    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    categoryController.$inject = ['$scope', '$location', 'ngAuthSettings', 'categoryService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function authorController($scope, $location, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function categoryController($scope, $location, ngAuthSettings, categoryService, $ocLazyLoad, $modal, DTOptionsBuilder) {
         $scope.boxsearch = {
             open: true,
         };
@@ -13,24 +13,24 @@
         _loadData();
 
         $scope.FnClear = _initSearch;
-        $scope.FnSearch = _searchAuthor;
-        $scope.GridFnCreate = _createAuthor;
+        $scope.FnSearch = _searchCategory;
+        $scope.GridFnCreate = _createCategory;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
         $scope.GridFnEdit = _editItem;
-        $scope.GridFnDelete = _deleteItem;
-        
+        $scope.GridFnStop = _stopItem;
+        $scope.GridFnRestore = _restoreItem;
+
         function _initSearch() {
             $scope.search = {
-                AuthorName: ""
+                CategoryName: ""
             };
         }
 
         function _loadData() {
             $scope.GridListItem = null;
-            authorService.GetAllAuthors().then(
-                function (response) {
-                    //console.log(response.data);
+            categoryService.GetAllCategories().then(
+                function (response) {                    
                     $scope.GridListItem = response.data;
                 },
                 function (error) {
@@ -39,21 +39,21 @@
             );
         }
 
-        function _searchAuthor() {
+        function _searchCategory() {
 
         }
 
-        function _createAuthor() {
+        function _createCategory() {
             $ocLazyLoad.load({
                 name: 'LibManageApp',
                 files:
                 [
-                    'app/Sections/QT50/create/controller.js',
+                    'app/Sections/QT30/create/controller.js',
                 ]
             }).then(function () {
                 $modal.open({
-                    templateUrl: "app/Sections/QT50/create/view.html",
-                    controller: 'createAuthorController',
+                    templateUrl: "app/Sections/QT30/create/view.html",
+                    controller: 'createCategoryController',
                 });
             });
         }
@@ -67,15 +67,15 @@
                 name: 'LibManageApp',
                 files:
                 [
-                    'app/Sections/QT50/edit/controller.js',
+                    'app/Sections/QT30/edit/controller.js',
                 ]
             }).then(function () {
                 $modal.open({
-                    templateUrl: "app/Sections/QT50/edit/view.html",
-                    controller: 'editAuthorController',
+                    templateUrl: "app/Sections/QT30/edit/view.html",
+                    controller: 'editCategoryController',
                     size: "lg",
                     resolve: {
-                        AuthorObject: function () {
+                        CategoryObject: function () {
                             return item;
                         }
                     }
@@ -83,7 +83,10 @@
             });
         }
 
-        function _deleteItem(item, index) {
+        function _stopItem(item, index) {
+
+        }
+        function _restoreItem(item, index) {
 
         }
 
@@ -101,38 +104,30 @@
                 }
             ]);
 
-        // receive an event from modal and save author
-        $scope.$on("CREATE_AUTHOR", function (event, dt) {
+        // receive an event from modal and save Category
+        $scope.$on("CREATE_CATEGORY", function (event, dt) {
             //console.log(dt);
-            authorService.SaveAuthor(dt.data).then(
+            categoryService.SaveCategory(dt.data).then(
                 function (res) {
-                    if (res.status !== "error") {
-                        _loadData();
-                        alert("Thêm tác giả thành công.");
-                    } else {
-                        alert(res.messages);
-                    }
+                    _loadData();
+                    alert("Thêm thể loại sách thành công.");
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm tác giả.");
+                    alert("Xảy ra lỗi khi thêm thể loại sách.");
                 }
             );
         });
-        
-        // receive an event from modal and save author
-        $scope.$on("EDIT_AUTHOR", function (event, dt) {
+
+        // receive an event from modal and save Category
+        $scope.$on("EDIT_CATEGORY", function (event, dt) {
             //console.log(dt);
-            authorService.SaveAuthor(dt.data).then(
+            categoryService.SaveCategory(dt.data).then(
                 function (res) {
-                    if (res.status !== "error") {
-                        _loadData();
-                        alert("Sửa tác giả thành công.");
-                    } else {
-                        alert(res.messages);
-                    }
+                    _loadData();
+                    alert("Thao tác thành công.");
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi sửa tác giả.");
+                    alert("Xảy ra lỗi với thao tác này.");
                 }
             );
         });

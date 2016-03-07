@@ -1,0 +1,11 @@
+(function () {
+    'use strict'
+
+    angular.module('LibManageApp').factory('authorService', authorService);
+
+    authorService.$inject = ['$q', '$http', 'ngAuthSettings'];
+
+    function authorService($q, $http, ngAuthSettings) {
+
+    }
+})();

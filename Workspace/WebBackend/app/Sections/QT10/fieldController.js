@@ -1,10 +1,11 @@
 ﻿(function () {
     'use strict'
-    angular.module('LibManageApp').controller('authorController', authorController);
+    angular.module('LibManageApp').controller('fieldController', fieldController);
 
-    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    fieldController.$inject = ['$scope', '$location', 'ngAuthSettings', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function authorController($scope, $location, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function fieldController($scope, $location, ngAuthSettings, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+
         $scope.boxsearch = {
             open: true,
         };
@@ -13,22 +14,22 @@
         _loadData();
 
         $scope.FnClear = _initSearch;
-        $scope.FnSearch = _searchAuthor;
-        $scope.GridFnCreate = _createAuthor;
+        $scope.FnSearch = _searchCategory;
+        $scope.GridFnCreate = _createCategory;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
         $scope.GridFnEdit = _editItem;
         $scope.GridFnDelete = _deleteItem;
-        
+
         function _initSearch() {
             $scope.search = {
-                AuthorName: ""
+                CategoryName: ""
             };
         }
 
         function _loadData() {
             $scope.GridListItem = null;
-            authorService.GetAllAuthors().then(
+            fieldService.GetAllCategorys().then(
                 function (response) {
                     //console.log(response.data);
                     $scope.GridListItem = response.data;
@@ -39,21 +40,22 @@
             );
         }
 
-        function _searchAuthor() {
+        function _searchCategory() {
 
         }
 
-        function _createAuthor() {
+        function _createCategory() {
             $ocLazyLoad.load({
                 name: 'LibManageApp',
                 files:
                 [
-                    'app/Sections/QT50/create/controller.js',
+                    'app/Sections/QT10/create/controller.js',
                 ]
             }).then(function () {
                 $modal.open({
-                    templateUrl: "app/Sections/QT50/create/view.html",
-                    controller: 'createAuthorController',
+                    templateUrl: "app/Sections/QT10/create/view.html",
+                    controller: 'createFieldController',
+                    size: "sm",
                 });
             });
         }
@@ -67,15 +69,15 @@
                 name: 'LibManageApp',
                 files:
                 [
-                    'app/Sections/QT50/edit/controller.js',
+                    'app/Sections/QT10/edit/controller.js',
                 ]
             }).then(function () {
                 $modal.open({
-                    templateUrl: "app/Sections/QT50/edit/view.html",
-                    controller: 'editAuthorController',
-                    size: "lg",
+                    templateUrl: "app/Sections/QT10/edit/view.html",
+                    controller: 'editFieldController',
+                    size: "sm",
                     resolve: {
-                        AuthorObject: function () {
+                        FieldObject: function () {
                             return item;
                         }
                     }
@@ -101,41 +103,38 @@
                 }
             ]);
 
-        // receive an event from modal and save author
-        $scope.$on("CREATE_AUTHOR", function (event, dt) {
-            //console.log(dt);
-            authorService.SaveAuthor(dt.data).then(
+        // receive an event from modal and save data
+        $scope.$on("CREATE_FIELD", function (event, dt) {
+            fieldService.SaveField(dt.data).then(
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Thêm tác giả thành công.");
+                        alert("Thêm chuyên ngành thành công.");
                     } else {
                         alert(res.messages);
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm tác giả.");
-                }
-            );
-        });
-        
-        // receive an event from modal and save author
-        $scope.$on("EDIT_AUTHOR", function (event, dt) {
-            //console.log(dt);
-            authorService.SaveAuthor(dt.data).then(
-                function (res) {
-                    if (res.status !== "error") {
-                        _loadData();
-                        alert("Sửa tác giả thành công.");
-                    } else {
-                        alert(res.messages);
-                    }
-                },
-                function (error) {
-                    alert("Xảy ra lỗi khi sửa tác giả.");
+                    alert("Xảy ra lỗi khi thêm chuyên ngành.");
                 }
             );
         });
 
+        // receive an event from modal and save data
+        $scope.$on("EDIT_FIELD", function (event, dt) {
+            fieldService.SaveField(dt.data).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Sửa chuyên ngành thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
+                },
+                function (error) {
+                    alert("Xảy ra lỗi khi sửa chuyên ngành.");
+                }
+            );
+        });
     }
 })();

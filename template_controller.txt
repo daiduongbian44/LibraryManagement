@@ -1,0 +1,11 @@
+(function () {
+    'use strict'
+    angular.module('LibManageApp').controller('authorController', authorController);
+
+    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+
+    function authorController($scope, $location, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+
+
+    }
+})();

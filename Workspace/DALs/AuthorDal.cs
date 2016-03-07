@@ -18,19 +18,21 @@ namespace DALs
         /// Save an author to db
         /// </summary>
         /// <param name="author"></param>
-        public void SaveAuthor(AuthorModel author)
+        public int SaveAuthor(AuthorModel author)
         {
             const string procName = "cat_Save_Author";
             try
             {
                 var xml = Utils.SerializeToXML<AuthorModel>(author);
                 var param = new DynamicParameters();
-                param.Add("@AuthorID", author.AuthorID);
+                param.Add("@AuthorID", author.AuthorID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
 
                 param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+
+                return param.Get<int>("@AuthorID");
             }
             catch (Exception)
             {

@@ -127,7 +127,19 @@ app.config([
             }
         }).state('dashboard.QT10', {
             templateUrl: 'app/Sections/QT10/view.html',
-            url: '/QT10'
+            url: '/QT10',
+            controller: 'fieldController',
+            resolve: {
+                loadMyFile: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'LibManageApp',
+                        files: [
+                            'app/Sections/QT10/fieldController.js',
+                            'app/Sections/QT10/fieldService.js'
+                        ]
+                    });
+                }
+            }
         }).state('dashboard.QT30', {
             templateUrl: 'app/Sections/QT30/view.html',
             url: '/QT30'

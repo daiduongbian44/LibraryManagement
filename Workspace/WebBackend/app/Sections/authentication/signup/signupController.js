@@ -17,7 +17,7 @@
             var user = {
                 UserName: $scope.user.username,
                 PassWord: $scope.user.password,
-                RoleID: 1,
+                RoleID: 2,
                 StatusTypeID: 1,
                 FirstName: "",
                 LastName: "",
@@ -28,13 +28,16 @@
             };
 
             signupService.SaveUser(user).then(
-                function (response) {
-                    console.log(response);
-                    alert("Tai khoan dang duoc xu ly, vui long kiem tra mail");
-                    $location.path('/login');
+                function (res) {
+                    if (res.status !== "error") {
+                        alert("Tài khoản đang được xử lý, kiểm tra hòm thư điện tử.");
+                        $location.path('/login');
+                    } else {
+                        alert(res.messages);
+                    }
                 },
                 function (error) {
-                    alert("Xay ra loi trong he thong, kiem tra sau.");
+                    alert("Xảy ra một lỗi trong hệ thống, đăng ký vào thời gian khác.");
                 }
             );
         };
