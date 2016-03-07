@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Models.Category
 {
+    [XmlRoot(ElementName = "Category")]
     public class CategoryModel
     {
         public long CategoryID { get; set; }

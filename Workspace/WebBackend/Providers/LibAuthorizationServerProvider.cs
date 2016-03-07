@@ -34,7 +34,7 @@ namespace WebBackend.Providers
 
             if (userPassword == null)
             {
-                context.SetError("invalid_grant", "The username is incorrect.");
+                context.SetError("invalid_grant", "Tên đăng nhập không hợp lệ.");
                 return;
             }
             else
@@ -70,7 +70,7 @@ namespace WebBackend.Providers
                     }
                     else
                     {
-                        context.SetError("invalid_grant", "The password is incorrect.");
+                        context.SetError("invalid_grant", "Mật khẩu không hợp lệ.");
                         return;
                     }
                 }

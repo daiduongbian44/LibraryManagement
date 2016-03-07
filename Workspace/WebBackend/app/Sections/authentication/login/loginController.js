@@ -23,7 +23,6 @@
                     //getAuthor();
                 },
                 function (err) {
-                    debugger;
                     $scope.message = err.message.error_description;
                 }
             );

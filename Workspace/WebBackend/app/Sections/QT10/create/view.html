@@ -1,0 +1,30 @@
+﻿<div class="modal-header alert alert-info">
+    <button type="button" class="close" ng-click="FnCloseModal()" aria-hidden="true">&times;</button>
+    <h4>Tạo mới chuyên ngành</h4>
+</div>
+<div class="modal-body">
+    <form name="form">
+        <div class="row padding-10">
+            <div class="form-group">
+                <label>Tên chuyên ngành</label>
+                <input class="form-control" placeholder="Tên chuyên ngành" ng-model="category.CategoryName" ng-change="textChange()" name="categoryname" required>
+                <p class="help-block"></p>
+                <div data-ng-hide="message == ''" class="alert alert-danger">
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer alert alert-info">
+    <button type="button" class="btn btn-primary" ng-click="FnSave()">Lưu</button>
+    <button type="button" class="btn btn-danger" ng-click="FnCloseModal()">Thoát</button>
+</div>
+
+<style type="text/css">
+    .padding-10 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>

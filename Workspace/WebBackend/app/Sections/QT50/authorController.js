@@ -106,8 +106,12 @@
             //console.log(dt);
             authorService.SaveAuthor(dt.data).then(
                 function (res) {
-                    _loadData();
-                    alert("Thêm tác giả thành công.");
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Thêm tác giả thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
                 },
                 function (error) {
                     alert("Xảy ra lỗi khi thêm tác giả.");
@@ -120,11 +124,15 @@
             //console.log(dt);
             authorService.SaveAuthor(dt.data).then(
                 function (res) {
-                    _loadData();
-                    alert("Sửa tác giả thành công.");
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Sửa tác giả thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm tác giả.");
+                    alert("Xảy ra lỗi khi sửa tác giả.");
                 }
             );
         });

@@ -179,6 +179,10 @@
     <Content Include="app\Sections\dashboard\directives\timeline\timeline.html" />
     <Content Include="app\Sections\dashboard\directives\timeline\timeline.js" />
     <Content Include="app\Sections\dashboard\views\home.html" />
+    <Content Include="app\Sections\QT10\create\controller.js" />
+    <Content Include="app\Sections\QT10\create\view.html" />
+    <Content Include="app\Sections\QT10\edit\controller.js" />
+    <Content Include="app\Sections\QT10\edit\view.html" />
     <Content Include="app\Sections\QT10\fieldController.js" />
     <Content Include="app\Sections\QT10\fieldService.js" />
     <Content Include="app\Sections\QT10\view.html" />

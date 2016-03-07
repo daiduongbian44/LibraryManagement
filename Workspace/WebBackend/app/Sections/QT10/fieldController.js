@@ -29,15 +29,15 @@
 
         function _loadData() {
             $scope.GridListItem = null;
-            //authorService.GetAllAuthors().then(
-            //    function (response) {
-            //        //console.log(response.data);
-            //        $scope.GridListItem = response.data;
-            //    },
-            //    function (error) {
-            //        $scope.GridListItem = null;
-            //    }
-            //);
+            fieldService.GetAllCategorys().then(
+                function (response) {
+                    //console.log(response.data);
+                    $scope.GridListItem = response.data;
+                },
+                function (error) {
+                    $scope.GridListItem = null;
+                }
+            );
         }
 
         function _searchCategory() {
@@ -45,18 +45,19 @@
         }
 
         function _createCategory() {
-            //$ocLazyLoad.load({
-            //    name: 'LibManageApp',
-            //    files:
-            //    [
-            //        'app/Sections/QT50/create/controller.js',
-            //    ]
-            //}).then(function () {
-            //    $modal.open({
-            //        templateUrl: "app/Sections/QT50/create/view.html",
-            //        controller: 'createAuthorController',
-            //    });
-            //});
+            $ocLazyLoad.load({
+                name: 'LibManageApp',
+                files:
+                [
+                    'app/Sections/QT10/create/controller.js',
+                ]
+            }).then(function () {
+                $modal.open({
+                    templateUrl: "app/Sections/QT10/create/view.html",
+                    controller: 'createFieldController',
+                    size: "sm",
+                });
+            });
         }
 
         function _clickRow(index) {
@@ -64,24 +65,24 @@
         }
 
         function _editItem(item) {
-            //$ocLazyLoad.load({
-            //    name: 'LibManageApp',
-            //    files:
-            //    [
-            //        'app/Sections/QT50/edit/controller.js',
-            //    ]
-            //}).then(function () {
-            //    $modal.open({
-            //        templateUrl: "app/Sections/QT50/edit/view.html",
-            //        controller: 'editAuthorController',
-            //        size: "lg",
-            //        resolve: {
-            //            AuthorObject: function () {
-            //                return item;
-            //            }
-            //        }
-            //    });
-            //});
+            $ocLazyLoad.load({
+                name: 'LibManageApp',
+                files:
+                [
+                    'app/Sections/QT10/edit/controller.js',
+                ]
+            }).then(function () {
+                $modal.open({
+                    templateUrl: "app/Sections/QT10/edit/view.html",
+                    controller: 'editFieldController',
+                    size: "sm",
+                    resolve: {
+                        FieldObject: function () {
+                            return item;
+                        }
+                    }
+                });
+            });
         }
 
         function _deleteItem(item, index) {
@@ -102,5 +103,38 @@
                 }
             ]);
 
+        // receive an event from modal and save data
+        $scope.$on("CREATE_FIELD", function (event, dt) {
+            fieldService.SaveField(dt.data).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Thêm chuyên ngành thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
+                },
+                function (error) {
+                    alert("Xảy ra lỗi khi thêm chuyên ngành.");
+                }
+            );
+        });
+
+        // receive an event from modal and save data
+        $scope.$on("EDIT_FIELD", function (event, dt) {
+            fieldService.SaveField(dt.data).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Sửa chuyên ngành thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
+                },
+                function (error) {
+                    alert("Xảy ra lỗi khi sửa chuyên ngành.");
+                }
+            );
+        });
     }
 })();

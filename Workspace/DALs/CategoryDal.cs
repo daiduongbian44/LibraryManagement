@@ -21,7 +21,7 @@ namespace DALs
         /// <returns></returns>
         public int SaveCategory(CategoryModel category)
         {
-            const string procName = "scr_Save_Category";
+            const string procName = "cat_Save_Category";
             try
             {
                 var xml = Utils.SerializeToXML<CategoryModel>(category);
