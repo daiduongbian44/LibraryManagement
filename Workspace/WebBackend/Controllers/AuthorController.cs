@@ -49,12 +49,17 @@ namespace WebBackend.Controllers
             try
             {
                 AuthorBLL bll = new AuthorBLL();
-                bll.SaveAuthor(author);
+                int value = bll.SaveAuthor(author);
+                if(value <= 0)
+                {
+                    result.Status = Constant.API_RESULT_ERROR;
+                    result.Messages = "Tác giả đã tồn tại.";
+                }
             }
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = ex.Message;
+                result.Messages = "Xảy ra lỗi hệ thống khi thêm tác giả.";
             }
 
             return Ok(result);

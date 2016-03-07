@@ -21,10 +21,10 @@ namespace BLLs
         /// Save an user to db
         /// </summary>
         /// <param name="user"></param>
-        public void SaveUser(UserModel user)
+        public int SaveUser(UserModel user)
         {
             
-            _dal.SaveUser(user);
+            return _dal.SaveUser(user);
         }
 
         /// <summary>

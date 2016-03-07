@@ -21,9 +21,9 @@ namespace BLLs
         /// Save an author to db
         /// </summary>
         /// <param name="author"></param>
-        public void SaveAuthor(AuthorModel author)
+        public int SaveAuthor(AuthorModel author)
         {
-            _dal.SaveAuthor(author);
+            return _dal.SaveAuthor(author);
         }
 
         /// <summary>

@@ -179,6 +179,8 @@
     <Content Include="app\Sections\dashboard\directives\timeline\timeline.html" />
     <Content Include="app\Sections\dashboard\directives\timeline\timeline.js" />
     <Content Include="app\Sections\dashboard\views\home.html" />
+    <Content Include="app\Sections\QT10\fieldController.js" />
+    <Content Include="app\Sections\QT10\fieldService.js" />
     <Content Include="app\Sections\QT10\view.html" />
     <Content Include="app\Sections\QT110\view.html" />
     <Content Include="app\Sections\QT130\view.html" />
@@ -356,6 +358,7 @@
     </Compile>
     <Compile Include="Controllers\AuthenController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Models\UserExisted.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

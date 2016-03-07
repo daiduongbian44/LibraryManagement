@@ -52,12 +52,17 @@ namespace WebBackend.Controllers
                 user.PassWord = hasher.HashPassword(user.PassWord);
 
                 UserBLL bll = new UserBLL();
-                bll.SaveUser(user);
+                int value = bll.SaveUser(user);
+                if(value <= 0)
+                {
+                    result.Status = Constant.API_RESULT_ERROR;
+                    result.Messages = "Người dùng đã tồn tại.";
+                }
             }
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = ex.Message;
+                result.Messages = "Xảy ra lỗi khi thêm người dùng";
             }
 
             return Ok(result);

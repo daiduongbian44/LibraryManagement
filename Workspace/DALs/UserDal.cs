@@ -18,19 +18,20 @@ namespace DALs
         /// Save an user to db
         /// </summary>
         /// <param name="user"></param>
-        public void SaveUser(UserModel user)
+        public int SaveUser(UserModel user)
         {
             const string procName = "scr_Save_User";
             try
             {
                 var xml = Utils.SerializeToXML<UserModel>(user);
                 var param = new DynamicParameters();
-                param.Add("@UserID", user.UserID);
+                param.Add("@UserID", user.UserID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
 
                 param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+                return param.Get<int>("@UserID");
             }
             catch (Exception)
             {
