@@ -190,6 +190,10 @@
     <Content Include="app\Sections\QT130\view.html" />
     <Content Include="app\Sections\QT150\view.html" />
     <Content Include="app\Sections\QT170\view.html" />
+    <Content Include="app\Sections\QT30\categoryController.js" />
+    <Content Include="app\Sections\QT30\categoryService.js" />
+    <Content Include="app\Sections\QT30\create\controller.js" />
+    <Content Include="app\Sections\QT30\create\view.html" />
     <Content Include="app\Sections\QT30\view.html" />
     <Content Include="app\Sections\QT50\authorController.js" />
     <Content Include="app\Sections\QT50\authorService.js" />
@@ -407,6 +411,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\Sections\QT30\edit\" />
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

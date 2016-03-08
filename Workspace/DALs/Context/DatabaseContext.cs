@@ -21,7 +21,7 @@ namespace DALs.Context
 
         private DatabaseContext()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnectionManhNQ"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             con = new SqlConnection(connectionString);
         }
 

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Author\AuthorModel.cs" />
     <Compile Include="Category\CategoryModel.cs" />
+    <Compile Include="EmailJob\EmailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\UserModel.cs" />
     <Compile Include="User\UserPassword.cs" />
