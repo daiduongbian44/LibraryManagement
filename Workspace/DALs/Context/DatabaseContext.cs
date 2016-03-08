@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace DALs.Context
 {
-    public class DatabaseContext : IDisposable
+    public class DatabaseContext
     {
         private string connectionString;
-        private SqlConnection con;
         private static DatabaseContext _instance = null;
 
         public SqlConnection Connection
         {
-            get { return con; }
+            get { return new SqlConnection(connectionString); ; }
         }
 
         private DatabaseContext()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            con = new SqlConnection(connectionString);
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnectionManhNQ"].ConnectionString;
         }
 
         public static DatabaseContext getInstance()
@@ -32,14 +30,6 @@ namespace DALs.Context
                 _instance = new DatabaseContext();
             }
             return _instance;
-        }
-
-        public void Dispose()
-        {
-            if(con != null && con.State == System.Data.ConnectionState.Open)
-            {
-                con.Close();
-            }
         }
     }
 }
