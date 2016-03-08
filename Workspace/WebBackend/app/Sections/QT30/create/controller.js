@@ -9,15 +9,24 @@
         $scope.FnCloseModal = _fnCloseModal;
         $scope.FnSave = _fnSave;
         $scope.ListField = ListField;
+        
 
-        console.log(ListField);
-
-        var _category = {            
+        $scope.category = {
             CategoryName: "",
-            CategoryLevel: 1,
-            ParentID: 1,
-            CategoryID: 0
+            ParentID: 0
         };
+
+        var _category = {
+            CategoryName: "",
+        };
+
+        _selectDefault();
+
+        function _selectDefault() {
+            if (ListField != null && ListField.length > 0) {
+                $scope.category.ParentID = ListField[0].categoryID;
+            }
+        }
 
         function _fnCloseModal() {
             $modalInstance.dismiss('cancel');
@@ -26,19 +35,20 @@
         function _fnSave() {
             if ($scope.form.categoryname.$valid) {
                 _category.CategoryName = $scope.category.CategoryName;
+                _category.ParentID = $scope.category.ParentID;
 
                 // broadcast data to save
-                $rootScope.$broadcast("CREATE_FIELD", { data: _category });
+                $rootScope.$broadcast("CREATE_SUBJECT", { data: _category });
 
                 _fnCloseModal();
             } else {
-                $scope.message = "Tên đầu mục chưa hợp lệ.";
+                $scope.message = "Tên loại sách chưa hợp lệ.";
             }
         }
 
         function _textChange() {
             if (!$scope.form.categoryname.$valid) {
-                $scope.message = "Tên đầu mục chưa hợp lệ.";
+                $scope.message = "Tên loại sách chưa hợp lệ.";
             } else {
                 $scope.message = "";
             }

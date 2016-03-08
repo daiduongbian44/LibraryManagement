@@ -43,11 +43,9 @@
             fieldService.GetAllCategorys().then(
                 function (response) {
                     _listField = response.data;
-                    console.log(response.data);
                 },
                 function (error) {
                     _listField = null;
-                    //console.log(error);
                 }
             );
         }
@@ -91,8 +89,10 @@
                 $modal.open({
                     templateUrl: "app/Sections/QT30/edit/view.html",
                     controller: 'editCategoryController',
-                    size: "lg",
                     resolve: {
+                        ListField: function () {
+                            return _listField;
+                        },
                         CategoryObject: function () {
                             return item;
                         }
@@ -123,29 +123,35 @@
             ]);
 
         // receive an event from modal and save Category
-        $scope.$on("CREATE_CATEGORY", function (event, dt) {
-            //console.log(dt);
+        $scope.$on("CREATE_SUBJECT", function (event, dt) {
             categoryService.SaveCategory(dt.data).then(
                 function (res) {
-                    _loadData();
-                    alert("Thêm thể loại sách thành công.");
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Thêm loại sách thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm thể loại sách.");
+                    alert("Xảy ra lỗi khi thêm loại sách.");
                 }
             );
         });
 
         // receive an event from modal and save Category
-        $scope.$on("EDIT_CATEGORY", function (event, dt) {
-            //console.log(dt);
+        $scope.$on("EDIT_SUBJECT", function (event, dt) {
             categoryService.SaveCategory(dt.data).then(
                 function (res) {
-                    _loadData();
-                    alert("Thao tác thành công.");
+                    if (res.status !== "error") {
+                        _loadData();
+                        alert("Sửa loại sách thành công.");
+                    } else {
+                        alert(res.messages);
+                    }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi với thao tác này.");
+                    alert("Xảy ra lỗi khi sửa loại sách.");
                 }
             );
         });
