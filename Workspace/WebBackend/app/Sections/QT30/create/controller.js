@@ -2,15 +2,17 @@
     'use strict'
     angular.module('LibManageApp').controller('createCategoryController', createCategoryController);
 
-    createCategoryController.$inject = ['$scope', '$rootScope', '$location', 'ngAuthSettings', '$ocLazyLoad', '$modal', '$modalInstance', 'Upload'];
+    createCategoryController.$inject = ['$scope', '$rootScope', '$location', 'ngAuthSettings', '$ocLazyLoad', 'ListField', '$modal', '$modalInstance', 'Upload'];
 
-    function createCategoryController($scope, $rootScope, $location, ngAuthSettings, $ocLazyLoad, $modal, $modalInstance, Upload) {
+    function createCategoryController($scope, $rootScope, $location, ngAuthSettings, $ocLazyLoad, ListField, $modal, $modalInstance, Upload) {
 
         $scope.FnCloseModal = _fnCloseModal;
         $scope.FnSave = _fnSave;
+        $scope.ListField = ListField;
 
-        var _category = {
-            ImageURL: "",
+        console.log(ListField);
+
+        var _category = {            
             CategoryName: "",
             CategoryLevel: 1,
             ParentID: 1,
@@ -22,28 +24,23 @@
         }
 
         function _fnSave() {
-            if ($scope.form.file.$valid
-                && $scope.form.categoryname.$valid
-                && $scope.fileImage) {
+            if ($scope.form.categoryname.$valid) {
+                _category.CategoryName = $scope.category.CategoryName;
 
-                Upload.upload({
-                    url: 'api/upload/image',
-                    data: { file: $scope.fileImage }
-                }).then(function (resp) {                    
+                // broadcast data to save
+                $rootScope.$broadcast("CREATE_FIELD", { data: _category });
 
-                    _category.ImageURL = resp.data.data;
-                    _category.CategoryName = $scope.category.CategoryName;
+                _fnCloseModal();
+            } else {
+                $scope.message = "Tên đầu mục chưa hợp lệ.";
+            }
+        }
 
-                    // broadcast data to save
-                    $rootScope.$broadcast("CREATE_CATEGORY", { data: _category });
-
-                    _fnCloseModal();
-
-                }, function (resp) {
-                    alert("Xảy ra lỗi trong quá trình upload ảnh.");
-                }, function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                });
+        function _textChange() {
+            if (!$scope.form.categoryname.$valid) {
+                $scope.message = "Tên đầu mục chưa hợp lệ.";
+            } else {
+                $scope.message = "";
             }
         }
     }

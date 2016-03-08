@@ -2,9 +2,9 @@
     'use strict'
     angular.module('LibManageApp').controller('categoryController', categoryController);
 
-    categoryController.$inject = ['$scope', '$location', 'ngAuthSettings', 'categoryService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    categoryController.$inject = ['$scope', '$location', 'ngAuthSettings', 'categoryService', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function categoryController($scope, $location, ngAuthSettings, categoryService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function categoryController($scope, $location, ngAuthSettings, categoryService, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
         $scope.boxsearch = {
             open: true,
         };
@@ -20,6 +20,8 @@
         $scope.GridFnEdit = _editItem;
         $scope.GridFnStop = _stopItem;
         $scope.GridFnRestore = _restoreItem;
+        
+        var _listField;
 
         function _initSearch() {
             $scope.search = {
@@ -35,6 +37,17 @@
                 },
                 function (error) {
                     $scope.GridListItem = null;
+                }
+            );
+
+            fieldService.GetAllCategorys().then(
+                function (response) {
+                    _listField = response.data;
+                    console.log(response.data);
+                },
+                function (error) {
+                    _listField = null;
+                    //console.log(error);
                 }
             );
         }
@@ -54,6 +67,11 @@
                 $modal.open({
                     templateUrl: "app/Sections/QT30/create/view.html",
                     controller: 'createCategoryController',
+                    resolve: {
+                        ListField: function () {
+                            return _listField;
+                        }
+                    }
                 });
             });
         }
