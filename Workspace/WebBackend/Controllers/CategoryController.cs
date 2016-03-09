@@ -38,7 +38,7 @@ namespace WebBackend.Controllers
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = "Xảy ra lỗi khi thêm chuyên ngành.";
+                result.Messages = "Xảy ra lỗi khi lưu chuyên ngành.";
             }
 
             return Ok(result);
@@ -68,7 +68,7 @@ namespace WebBackend.Controllers
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = "Xảy ra lỗi khi thêm loại sách.";
+                result.Messages = "Xảy ra lỗi khi lưu loại sách.";
             }
 
             return Ok(result);

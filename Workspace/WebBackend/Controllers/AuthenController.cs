@@ -15,25 +15,6 @@ namespace WebBackend.Controllers
     [RoutePrefix("api/authen")]
     public class AuthenController : ApiController
     {
-        [AllowAnonymous]
-        public IHttpActionResult CheckUserExist(UserExisted user)
-        {
-            var result = new ApiResult()
-            {
-                Status = Constant.API_RESULT_SUCCESS,
-                Data = null
-            };
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = ex.Message; 
-            }
-            return Ok(result);
-        }
 
         [AllowAnonymous]
         [Route("saveuser")]
@@ -62,7 +43,7 @@ namespace WebBackend.Controllers
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = "Xảy ra lỗi khi thêm người dùng";
+                result.Messages = "Xảy ra lỗi khi lưu người dùng";
             }
 
             return Ok(result);

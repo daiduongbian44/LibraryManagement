@@ -15,4 +15,11 @@ namespace Models.Author
         public string AuthorName { get; set; }
         public string ImageURL { get; set; }
     }
+
+    public class Author
+    {
+        public long AuthorID { get; set; }
+        public string AuthorName { get; set; }
+        public string ImageURL { get; set; }
+    }
 }
