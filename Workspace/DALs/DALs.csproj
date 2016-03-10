@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorDal.cs" />
+    <Compile Include="BookDal.cs" />
     <Compile Include="CategoryDal.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="EmailJob\EmailDAL.cs" />
