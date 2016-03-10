@@ -16,6 +16,7 @@ var app = angular.module('LibManageApp', [
     'angularModalService',
     'selectionModel',
     'ngFileUpload',
+    'isteven-multi-select',
 ]);
 
 // Config Route for sidebar links
@@ -188,7 +189,21 @@ app.config([
             }
         }).state('dashboard.QT70', {
             templateUrl: 'app/Sections/QT70/view.html',
-            url: '/QT70'
+            url: '/QT70',
+            controller: 'bookController',
+            resolve: {
+                loadMyFile: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'LibManageApp',
+                        files: [
+                            'app/Sections/QT70/bookController.js',
+                            'app/Sections/QT70/bookService.js',
+                            'app/Sections/QT30/categoryService.js',
+                            'app/Sections/QT50/authorService.js',
+                        ]
+                    });
+                }
+            }
         }).state('dashboard.QT90', {
             templateUrl: 'app/Sections/QT90/view.html',
             url: '/QT90'

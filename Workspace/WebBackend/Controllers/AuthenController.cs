@@ -74,7 +74,7 @@ namespace WebBackend.Controllers
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = "Xảy ra lỗi khi thêm người dùng";
+                result.Messages = "Xảy ra lỗi khi lưu người dùng";
             }
 
             return Ok(result);

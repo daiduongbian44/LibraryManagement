@@ -59,7 +59,7 @@ namespace WebBackend.Controllers
             catch (Exception ex)
             {
                 result.Status = Constant.API_RESULT_ERROR;
-                result.Messages = "Xảy ra lỗi hệ thống khi thêm tác giả.";
+                result.Messages = "Xảy ra lỗi hệ thống khi lưu tác giả.";
             }
 
             return Ok(result);

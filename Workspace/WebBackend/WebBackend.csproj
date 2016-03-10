@@ -209,6 +209,10 @@
     <Content Include="app\Sections\QT60\userController.js" />
     <Content Include="app\Sections\QT60\userService.js" />
     <Content Include="app\Sections\QT60\view.html" />
+    <Content Include="app\Sections\QT70\bookController.js" />
+    <Content Include="app\Sections\QT70\bookService.js" />
+    <Content Include="app\Sections\QT70\create\controller.js" />
+    <Content Include="app\Sections\QT70\create\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
     <Content Include="app\Sections\samplePages\chart.html" />
@@ -264,6 +268,8 @@
     <Content Include="bower_components\angular-loading-bar\loading-bar.css" />
     <Content Include="bower_components\angular-loading-bar\loading-bar.js" />
     <Content Include="bower_components\angular-modal\angular-modal-service.js" />
+    <Content Include="bower_components\angular-multi-select\isteven-multi-select.css" />
+    <Content Include="bower_components\angular-multi-select\isteven-multi-select.js" />
     <Content Include="bower_components\angular-perfect-scrollbar\angular-perfect-scrollbar.js" />
     <Content Include="bower_components\angular-perfect-scrollbar\perfect-scrollbar.min.css" />
     <Content Include="bower_components\angular-perfect-scrollbar\perfect-scrollbar.min.js" />
@@ -373,6 +379,7 @@
     </Compile>
     <Compile Include="Controllers\AuthenController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -419,6 +426,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\Sections\QT70\edit\" />
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
