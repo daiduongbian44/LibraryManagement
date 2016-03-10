@@ -172,6 +172,21 @@ app.config([
                     });
                 }
             }
+        }).state('dashboard.QT60', {
+            templateUrl: 'app/Sections/QT60/view.html',
+            url: '/QT60',
+            controller: 'memberController',
+            resolve: {
+                loadMyFile: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'LibManageApp',
+                        files: [
+                            'app/Sections/QT60/memberController.js',
+                            'app/Sections/QT60/memberService.js'
+                        ]
+                    });
+                }
+            }
         }).state('dashboard.QT70', {
             templateUrl: 'app/Sections/QT70/view.html',
             url: '/QT70',

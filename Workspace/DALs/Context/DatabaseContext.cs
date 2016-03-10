@@ -20,7 +20,7 @@ namespace DALs.Context
 
         private DatabaseContext()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnectionManhNQ"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
         public static DatabaseContext getInstance()
