@@ -28,7 +28,6 @@ namespace DALs
                 param.Add("@UserID", user.UserID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
 
-                param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
                 return param.Get<int>("@UserID");
@@ -47,7 +46,7 @@ namespace DALs
         {
             const string procName = "scr_Update_LastLogin";
             try
-            {                
+            {
                 var param = new DynamicParameters();
                 param.Add("@UserID", userID);
                 var con = DatabaseContext.getInstance().Connection;
@@ -113,9 +112,10 @@ namespace DALs
         /// <returns></returns>
         public UserModel GetUserByUserName(string username)
         {
-            return new UserModel() {
+            return new UserModel()
+            {
                 UserID = 1,
-                UserName = "manh", 
+                UserName = "manh",
             };
         }
 
@@ -128,6 +128,38 @@ namespace DALs
         public bool CheckUserExist(string userName, string email)
         {
             return false;
+        }
+
+        public List<UserModel> GetListUsers()
+        {
+            const string procName = "scr_Get_Users";
+            try
+            {
+                var con = DatabaseContext.getInstance().Connection;
+                var param = new DynamicParameters();
+                param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                var res = con.Query<UserModel>(procName, param, commandType: CommandType.StoredProcedure);
+                return res.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<RoleModel> GetListRoles()
+        {
+            const string procName = "scr_Get_Roles";
+            try
+            {
+                var con = DatabaseContext.getInstance().Connection;
+                var res = con.Query<RoleModel>(procName, commandType: CommandType.StoredProcedure);
+                return res.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }

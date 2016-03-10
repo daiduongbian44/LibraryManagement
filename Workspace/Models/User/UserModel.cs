@@ -15,13 +15,15 @@ namespace Models.User
         public string PassWord { get; set; }
         public int RoleID { get; set; }
         public short StatusTypeID { get; set; }
+        public string StatusTypeName { get; set; }
+        public string FullName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> BirthDay { get; set; }
         public string Address { get; set; }
-        public long PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string ImageURL { get; set; }
-        public Nullable<System.DateTime> LastLogin { get; set; }
+        public Nullable<System.DateTime> LastLogin { get; set; }           
     }
 }
