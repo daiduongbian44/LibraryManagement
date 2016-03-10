@@ -27,7 +27,7 @@ namespace DALs
                 var param = new DynamicParameters();
                 param.Add("@UserID", user.UserID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
-                
+
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
                 return param.Get<int>("@UserID");
@@ -46,7 +46,7 @@ namespace DALs
         {
             const string procName = "scr_Update_LastLogin";
             try
-            {                
+            {
                 var param = new DynamicParameters();
                 param.Add("@UserID", userID);
                 var con = DatabaseContext.getInstance().Connection;
@@ -112,9 +112,10 @@ namespace DALs
         /// <returns></returns>
         public UserModel GetUserByUserName(string username)
         {
-            return new UserModel() {
+            return new UserModel()
+            {
                 UserID = 1,
-                UserName = "manh", 
+                UserName = "manh",
             };
         }
 
@@ -133,12 +134,14 @@ namespace DALs
         {
             const string procName = "scr_Get_Users";
             try
-            {                
+            {
                 var con = DatabaseContext.getInstance().Connection;
-                var res = con.Query<UserModel>(procName, commandType: CommandType.StoredProcedure);
+                var param = new DynamicParameters();
+                param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                var res = con.Query<UserModel>(procName, param, commandType: CommandType.StoredProcedure);
                 return res.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

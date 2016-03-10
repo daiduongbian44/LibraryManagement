@@ -58,31 +58,37 @@
                             <table datatable="ng" dt-options="GridDtOptions" id="example"
                                    class="table table-striped table-bordered table-hover">
                                 <thead>
-                                    <tr>
-                                        <th width="80px">Mã người dùng</th>
-                                        <th width="80px">Tên tài khoản</th>
-                                        <th width="80px">Tên người dùng</th>
+                                    <tr>                                   
+                                        <th width="110px">Ảnh đại diện</th>                                             
+                                        <th width="80px">Họ Tên</th>
                                         <th width="80px">Email</th>
                                         <th width="80px">Địa chỉ</th>
-                                        <th width="80px">Số điện thoại</th>
-                                        <th width="110px">Ảnh đại diện</th>                                        
+                                        <th width="80px">Số điện thoại</th>    
+                                        <th width="80px">Trạng thái</th>                                                                                
                                         <th width="80px">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in GridListItem" ng-class="{'selected':$index == GridSelectedIndex}" ng-click="GridFnClickRow($index)">
-                                        <td>{{item.authorID}}</td>
-                                        <td><img ng-src="{{item.imageURL}}" style="max-width: 80px; max-height: 80px;" /></td>
-                                        <td>{{item.userName}}</td>
+                                    <tr ng-repeat="item in GridListItem" ng-class="{'selected':$index == GridSelectedIndex}" ng-click="GridFnClickRow($index)">                                        
+                                        <td><img ng-src="{{item.imageURL}}" style="max-width: 80px; max-height: 80px;" /></td>                                        
+                                        <td>{{item.fullName}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.address}}</td>
+                                        <td>{{item.phoneNumber}}</td>
+                                        <td>{{item.statusTypeName}}</td>
                                         <td>
                                             <button class="btn btn-warning btn-xs" type="button" title="Sửa"
                                                     ng-click="GridFnEdit(item)">
                                                 <i class="fa fa-edit fa-fw"></i>
                                             </button>
-                                            <!--<button class="btn btn-danger btn-xs" type="button" title="Xóa"
-                                                    ng-click="GridFnDelete(item, $index)">
+                                            <button class="btn btn-danger btn-xs" type="button" title="Tạm dừng"
+                                                    ng-click="GridFnStop(item, $index)">
                                                 <i class="fa fa-times fa-fw"></i>
-                                            </button>-->
+                                            </button>
+                                            <button class="btn btn-success btn-xs" type="button" title="Khôi phục"
+                                                    ng-click="GridFnRestore(item, $index)">
+                                                <i class="fa fa-times fa-fw"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>

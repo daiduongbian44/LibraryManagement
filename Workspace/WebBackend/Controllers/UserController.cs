@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace WebBackend.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/author")]
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         [Authorize]

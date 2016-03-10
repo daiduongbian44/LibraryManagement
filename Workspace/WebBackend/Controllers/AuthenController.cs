@@ -50,8 +50,11 @@ namespace WebBackend.Controllers
             try
             {
                 // Hash password before save to db
-                PasswordHasher hasher = new PasswordHasher();
-                user.PassWord = hasher.HashPassword(user.PassWord);
+                if (user.UserID == 0)
+                {
+                    PasswordHasher hasher = new PasswordHasher();
+                    user.PassWord = hasher.HashPassword(user.PassWord);
+                }
 
                 UserBLL bll = new UserBLL();
                 EmailBLL emailBLL = new EmailBLL();

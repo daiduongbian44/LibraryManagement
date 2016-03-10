@@ -206,8 +206,10 @@
     <Content Include="app\Sections\QT50\view.html" />
     <Content Include="app\Sections\QT60\create\controller.js" />
     <Content Include="app\Sections\QT60\create\view.html" />
-    <Content Include="app\Sections\QT60\userController.js" />
-    <Content Include="app\Sections\QT60\userService.js" />
+    <Content Include="app\Sections\QT60\edit\controller.js" />
+    <Content Include="app\Sections\QT60\edit\view.html" />
+    <Content Include="app\Sections\QT60\memberController.js" />
+    <Content Include="app\Sections\QT60\memberService.js" />
     <Content Include="app\Sections\QT60\view.html" />
     <Content Include="app\Sections\QT70\bookController.js" />
     <Content Include="app\Sections\QT70\bookService.js" />
