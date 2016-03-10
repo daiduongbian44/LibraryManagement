@@ -22,7 +22,6 @@ namespace Models.Book
         public string Publisher { get; set; }
         public string Language { get; set; }
         public string ISBN { get; set; }
-        public List<Author.Author> ListAuthor { get; set; }
-        public Nullable<System.DateTime> PublishingDate { get; set; }
+        public List<Author.AuthorModel> ListAuthor { get; set; }
     }
 }

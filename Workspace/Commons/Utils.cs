@@ -20,11 +20,14 @@ namespace Commons
         /// <returns></returns>
         public static string SerializeToXML<T>(T data)
         {
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+
             XmlSerializer serialize = new XmlSerializer(typeof(T));
             using (StringWriter sww = new StringWriter())
             using (XmlWriter writer = XmlWriter.Create(sww))
             {
-                serialize.Serialize(writer, data);
+                serialize.Serialize(writer, data, ns);
                 var xml = sww.ToString();
                 return xml;
             }
