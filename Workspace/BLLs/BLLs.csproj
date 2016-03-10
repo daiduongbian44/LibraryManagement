@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AuthorBLL.cs" />
     <Compile Include="CategoryBLL.cs" />
+    <Compile Include="EmailBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBLL.cs" />
   </ItemGroup>

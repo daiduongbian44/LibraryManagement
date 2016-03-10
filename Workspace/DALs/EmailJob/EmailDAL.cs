@@ -15,19 +15,19 @@ namespace DALs.EmailJob
     {
         public long SaveEmail(EmailModel email)
         {
-            const string procName = "cat_Save_Author";
+            const string procName = "msg_Save_Email";
             try
             {
                 var xml = Utils.SerializeToXML<EmailModel>(email);
                 var param = new DynamicParameters();
-                param.Add("@EmailID", email.EmailID, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
                 param.Add("@XML", xml);
+                param.Add("@EmailID", email.EmailID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);                
                 
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
                 return param.Get<long>("EmailID");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

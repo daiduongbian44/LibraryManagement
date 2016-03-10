@@ -27,6 +27,16 @@ namespace BLLs
             return _dal.SaveUser(user);
         }
 
+        public List<UserModel> GetUsers()
+        {
+            return _dal.GetListUsers();
+        }
+
+        public List<RoleModel> GetRoles()
+        {
+            return _dal.GetListRoles();
+        }
+
         /// <summary>
         /// Update last logint
         /// </summary>

@@ -204,6 +204,11 @@
     <Content Include="app\Sections\QT50\edit\controller.js" />
     <Content Include="app\Sections\QT50\edit\view.html" />
     <Content Include="app\Sections\QT50\view.html" />
+    <Content Include="app\Sections\QT60\create\controller.js" />
+    <Content Include="app\Sections\QT60\create\view.html" />
+    <Content Include="app\Sections\QT60\userController.js" />
+    <Content Include="app\Sections\QT60\userService.js" />
+    <Content Include="app\Sections\QT60\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
     <Content Include="app\Sections\samplePages\chart.html" />
@@ -370,6 +375,7 @@
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\UserExisted.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\LibAuthorizationServerProvider.cs" />

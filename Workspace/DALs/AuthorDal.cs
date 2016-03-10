@@ -27,8 +27,7 @@ namespace DALs
                 var param = new DynamicParameters();
                 param.Add("@AuthorID", author.AuthorID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
-
-                param.Add("@Return", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                                
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
 
