@@ -13,12 +13,12 @@
 
         $scope.user = {
             UserName: "",
-            PassWord: "",
+            PassWord: "123456",
             FullName: "",
             Email: "",
             Address: "",
             PhoneNumber: 0,
-            RoleID: 3
+            RoleID: 3            
         };
 
         var _user = {
