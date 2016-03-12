@@ -10,5 +10,6 @@ namespace Models.User
     {
         public string PasswordHash { get; set; }
         public int RoleID { get; set; }
+        public int StatusTypeID { get; set; }
     }
 }

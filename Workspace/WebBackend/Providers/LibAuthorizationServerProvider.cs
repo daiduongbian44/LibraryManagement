@@ -39,39 +39,47 @@ namespace WebBackend.Providers
             }
             else
             {
-                if (!Array.Exists(roleIDMangements, role => role.Equals(userPassword.RoleID.ToString())))
+                if (userPassword.StatusTypeID != 4)
                 {
-                    context.SetError("invalid_grant", "Bạn không có quyền để truy cập trang này!");
+                    context.SetError("invalid_grant", "Tài khoản của bạn đang không hoạt động. Hãy liên lạc với ban quản lý!");
                     return;
                 }
                 else
                 {
-                    PasswordHasher hasher = new PasswordHasher();
-                    if (hasher.VerifyHashedPassword(userPassword.PasswordHash, context.Password) == PasswordVerificationResult.Success)
+                    if (!Array.Exists(roleIDMangements, role => role.Equals(userPassword.RoleID.ToString())))
                     {
-                        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                        var user = bll.GetUserByUserName(context.UserName);
+                        context.SetError("invalid_grant", "Bạn không có quyền để truy cập trang này!");
+                        return;
+                    }
+                    else
+                    {
+                        PasswordHasher hasher = new PasswordHasher();
+                        if (hasher.VerifyHashedPassword(userPassword.PasswordHash, context.Password) == PasswordVerificationResult.Success)
+                        {
+                            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                            var user = bll.GetUserByUserName(context.UserName);
 
 
-                        //update last logint
-                        bll.UpdateLastLogin(user.UserID);
+                            //update last logint
+                            bll.UpdateLastLogin(user.UserID);
 
-                        identity.AddClaim(new Claim("UserName", user.UserName));
-                        identity.AddClaim(new Claim("UserId", user.UserID.ToString()));
+                            identity.AddClaim(new Claim("UserName", user.UserName));
+                            identity.AddClaim(new Claim("UserId", user.UserID.ToString()));
 
-                        var props = new AuthenticationProperties(new Dictionary<string, string>
+                            var props = new AuthenticationProperties(new Dictionary<string, string>
                             {
                                 { "UserName", context.UserName},
                                 { "UserId", user.UserID.ToString()}
                             });
 
-                        var ticket = new AuthenticationTicket(identity, props);
-                        context.Validated(ticket);
-                    }
-                    else
-                    {
-                        context.SetError("invalid_grant", "Mật khẩu không hợp lệ.");
-                        return;
+                            var ticket = new AuthenticationTicket(identity, props);
+                            context.Validated(ticket);
+                        }
+                        else
+                        {
+                            context.SetError("invalid_grant", "Mật khẩu không hợp lệ.");
+                            return;
+                        }
                     }
                 }
             }
