@@ -86,7 +86,7 @@ namespace WebBackend.Controllers
             };
             try
             {
-                CategoryBLL bll = new CategoryBLL();
+                CategoryBLL bll = new CategoryBLL();                
                 result.Data = bll.GetListCategoryField();
             }
             catch (Exception ex)
@@ -117,6 +117,36 @@ namespace WebBackend.Controllers
                 result.Status = Constant.API_RESULT_ERROR;
                 result.Messages = "Xảy ra lỗi khi lấy dữ liệu.";
             }
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("changecategorystatus")]
+        public IHttpActionResult ChangeBookStatus(CategoryModel category, int statusTypeID)
+        {
+            var result = new ApiResult()
+            {
+                Status = Constant.API_RESULT_SUCCESS,
+                Data = null
+            };
+            try
+            {
+                CategoryBLL bll = new CategoryBLL();
+
+                bool value = bll.ChangeCategoryStatus(category.CategoryID, statusTypeID);
+                if (!value)
+                {
+                    result.Status = Constant.API_RESULT_ERROR;
+                    result.Messages = "Xảy ra lỗi trong quá trình xử lý.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = "Xảy ra lỗi hệ thống khi xử lý.";
+            }
+
             return Ok(result);
         }
     }

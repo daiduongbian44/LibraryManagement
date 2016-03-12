@@ -43,5 +43,35 @@ namespace WebBackend.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        [Authorize]
+        [Route("changebookstatus")]
+        public IHttpActionResult ChangeBookStatus(BookModel book, int statusTypeID)
+        {
+            var result = new ApiResult()
+            {
+                Status = Constant.API_RESULT_SUCCESS,
+                Data = null
+            };
+            try
+            {
+                BookBLL bll = new BookBLL();
+
+                bool value = bll.ChangeBookStatus(book.BookID, statusTypeID);
+                if (!value)
+                {
+                    result.Status = Constant.API_RESULT_ERROR;
+                    result.Messages = "Xảy ra lỗi trong quá trình xử lý.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = "Xảy ra lỗi hệ thống khi xử lý.";
+            }
+
+            return Ok(result);
+        }
+
     }
 }

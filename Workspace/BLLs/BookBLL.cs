@@ -27,5 +27,10 @@ namespace BLLs
         {
             return _dal.SaveBook(book);
         }
+
+        public bool ChangeBookStatus(long bookID, int statusTypeID)
+        {
+            return _dal.ChangeBookStatus(bookID, statusTypeID);
+        }
     }
 }

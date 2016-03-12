@@ -39,5 +39,24 @@ namespace DALs
                 throw;
             }
         }
+        public bool ChangeBookStatus(long bookID, int statusTypeID)
+        {
+            const string procName = "cat_Change_ItemStatusType";
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@BookID", bookID);
+                param.Add("@StatusTypeID", statusTypeID);
+                param.Add("@Result", dbType: DbType.Boolean, direction: ParameterDirection.InputOutput);
+
+                var con = DatabaseContext.getInstance().Connection;
+                con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+                return param.Get<bool>("@Result");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

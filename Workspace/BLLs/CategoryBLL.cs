@@ -44,5 +44,9 @@ namespace BLLs
         {
             return _dal.GetListCategorySubject();
         }
+        public bool ChangeCategoryStatus(long categoryID, int statusTypeID)
+        {
+            return _dal.ChangeCategoryStatus(categoryID, statusTypeID);
+        }
     }
 }

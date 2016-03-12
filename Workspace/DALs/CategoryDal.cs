@@ -40,6 +40,25 @@ namespace DALs
             }
         }
 
+        public bool ChangeCategoryStatus(long categoryID, int statusTypeID)
+        {
+            const string procName = "cat_Change_ItemStatusType";
+            try
+            {                
+                var param = new DynamicParameters();
+                param.Add("@CategoryID",categoryID);
+                param.Add("@StatusTypeID", statusTypeID);
+                param.Add("@Result", dbType: DbType.Boolean, direction: ParameterDirection.InputOutput);
+                
+                var con = DatabaseContext.getInstance().Connection;
+                con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+                return param.Get<bool>("@Result");            
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         /// <summary>
         /// Return all fields (CategoryLevel = 1)
         /// </summary>
