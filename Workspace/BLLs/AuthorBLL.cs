@@ -34,5 +34,9 @@ namespace BLLs
         {
             return _dal.GetListAuthors();
         }
+        public bool ChangeAuthorStatus(long authorID, int statusTypeID)
+        {
+            return _dal.ChangeAuthorStatus(authorID, statusTypeID);
+        }
     }
 }

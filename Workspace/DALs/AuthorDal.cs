@@ -13,7 +13,7 @@ namespace DALs
 {
     public class AuthorDal
     {
-        
+
         /// <summary>
         /// Save an author to db
         /// </summary>
@@ -27,13 +27,33 @@ namespace DALs
                 var param = new DynamicParameters();
                 param.Add("@AuthorID", author.AuthorID, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
                 param.Add("@XML", xml);
-                                
+
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
 
                 return param.Get<int>("@AuthorID");
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool ChangeAuthorStatus(long authorID, int statusTypeID)
+        {
+            const string procName = "cat_Change_ItemStatusType";
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@AuthorID", authorID);
+                param.Add("@StatusTypeID", statusTypeID);
+                param.Add("@Result", dbType: DbType.Boolean, direction: ParameterDirection.InputOutput);
+
+                var con = DatabaseContext.getInstance().Connection;
+                con.Execute(procName, param, commandType: CommandType.StoredProcedure);
+                return param.Get<Boolean>("@Result");
+            }
+            catch (Exception ex)
             {
                 throw;
             }

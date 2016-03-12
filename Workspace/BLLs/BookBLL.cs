@@ -27,8 +27,7 @@ namespace BLLs
         {
             return _dal.SaveBook(book);
         }
-
-        /// <summary>
+	/// <summary>
         /// Return all books from database
         /// </summary>
         /// <returns></returns>
@@ -36,5 +35,11 @@ namespace BLLs
         {
             return _dal.GetAllBooks();
         }
-    }
+	
+
+	public bool ChangeBookStatus(long bookID, int statusTypeID)
+        {
+            return _dal.ChangeBookStatus(bookID, statusTypeID);
+        }
+	}
 }

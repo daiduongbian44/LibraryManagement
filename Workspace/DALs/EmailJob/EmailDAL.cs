@@ -25,7 +25,7 @@ namespace DALs.EmailJob
                 
                 var con = DatabaseContext.getInstance().Connection;
                 con.Execute(procName, param, commandType: CommandType.StoredProcedure);
-                return param.Get<long>("EmailID");
+                return param.Get<int>("@EmailID");
             }
             catch (Exception ex)
             {
