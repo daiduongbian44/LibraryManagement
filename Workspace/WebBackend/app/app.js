@@ -136,7 +136,7 @@ app.config([
                         name: 'LibManageApp',
                         files: [
                             'app/Sections/QT10/fieldController.js',
-                            'app/Sections/QT10/fieldService.js'
+                            'app/Sections/QT10/fieldService.js',
                         ]
                     });
                 }

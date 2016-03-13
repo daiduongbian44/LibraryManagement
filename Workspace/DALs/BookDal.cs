@@ -40,7 +40,7 @@ namespace DALs
                 throw;
             }
         }
-/// <summary>
+        /// <summary>
         /// Return all books from database
         /// </summary>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace DALs
                 var listBook = res.ToList();
 
                 // find-author
-                foreach(var item in listBook)
+                foreach (var item in listBook)
                 {
                     var param1 = new DynamicParameters();
                     param1.Add("@BookID", item.BookID);
@@ -68,9 +68,9 @@ namespace DALs
             {
                 throw;
             }
-        }    
+        }
 
-	public bool ChangeBookStatus(long bookID, int statusTypeID)
+        public bool ChangeBookStatus(long bookID, int statusTypeID)
         {
             const string procName = "cat_Change_ItemStatusType";
             try
@@ -89,6 +89,6 @@ namespace DALs
                 throw;
             }
         }
-}
+    }
 
 }

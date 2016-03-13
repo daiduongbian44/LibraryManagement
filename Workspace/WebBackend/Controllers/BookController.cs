@@ -44,7 +44,7 @@ namespace WebBackend.Controllers
             return Ok(result);
         }
 
-[Authorize]
+        [Authorize]
         [Route("getbooks")]
         [HttpPost]
         public IHttpActionResult GetBooks()
@@ -66,8 +66,9 @@ namespace WebBackend.Controllers
             }
 
             return Ok(result);
-        }    
-[HttpPost]
+        }
+
+        [HttpPost]
         [Authorize]
         [Route("changebookstatus")]
         public IHttpActionResult ChangeBookStatus(BookModel book, int statusTypeID)
@@ -96,5 +97,5 @@ namespace WebBackend.Controllers
 
             return Ok(result);
         }
-}
+    }
 }

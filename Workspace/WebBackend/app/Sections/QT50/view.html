@@ -22,6 +22,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input class="form-control" placeholder="Tên tác giả" ng-model="search.AuthorName">
+                                                <div class="alert alert-warning" ng-show="msgAuthorName != ''">
+                                                    {{msgAuthorName}}
+                                                </div>
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>

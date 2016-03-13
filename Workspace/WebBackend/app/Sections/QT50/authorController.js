@@ -2,9 +2,9 @@
     'use strict'
     angular.module('LibManageApp').controller('authorController', authorController);
 
-    authorController.$inject = ['$scope', '$location', 'ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    authorController.$inject = ['$scope', '$location', 'commonService','ngAuthSettings', 'authorService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function authorController($scope, $location, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function authorController($scope, $location, commonService, ngAuthSettings, authorService, $ocLazyLoad, $modal, DTOptionsBuilder) {
         $scope.boxsearch = {
             open: true,
         };
@@ -19,28 +19,40 @@
         $scope.GridFnClickRow = _clickRow;
         $scope.GridFnEdit = _editItem;
         $scope.GridFnDelete = _deleteItem;
-        
+        $scope.DataOrigin = null;
+        $scope.msgAuthorName = "";
+
         function _initSearch() {
             $scope.search = {
                 AuthorName: ""
             };
+            $scope.GridListItem = $scope.DataOrigin;
+            $scope.msgAuthorName = "";
         }
 
         function _loadData() {
             $scope.GridListItem = null;
             authorService.GetAllAuthors().then(
                 function (response) {
-                    //console.log(response.data);
                     $scope.GridListItem = response.data;
+                    $scope.DataOrigin = response.data;
                 },
                 function (error) {
                     $scope.GridListItem = null;
+                    $scope.DataOrigin = null;
                 }
             );
         }
 
         function _searchAuthor() {
-
+            $scope.msgAuthorName = "";
+            if ($scope.search.AuthorName == "") {
+                $scope.msgAuthorName = "Nhập tên tác giả";
+                return;
+            }
+            $scope.GridListItem = $scope.DataOrigin.filter(function (item) {
+                return commonService.ContainText(item.authorName, $scope.search.AuthorName);
+            });
         }
 
         function _createAuthor() {

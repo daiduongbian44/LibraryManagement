@@ -2,9 +2,9 @@
     'use strict'
     angular.module('LibManageApp').controller('categoryController', categoryController);
 
-    categoryController.$inject = ['$scope', '$location', 'ngAuthSettings', 'categoryService', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    categoryController.$inject = ['$scope', '$location', 'commonService','ngAuthSettings', 'categoryService', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function categoryController($scope, $location, ngAuthSettings, categoryService, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function categoryController($scope, $location, commonService, ngAuthSettings, categoryService, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
         $scope.boxsearch = {
             open: true,
         };
@@ -20,29 +20,53 @@
         $scope.GridFnEdit = _editItem;
         $scope.GridFnStop = _stopItem;
         $scope.GridFnRestore = _restoreItem;
-        
+        $scope.msgCategoryName = "";
+        $scope.dataFinish = false;
+
         var _listField;
 
         function _initSearch() {
             $scope.search = {
                 CategoryName: ""
             };
+            $scope.msgCategoryName = "";
+            $scope.GridListItem = $scope.DataOrigin;
+            if ($scope.ListField != null && $scope.ListField.length > 0) {
+                $scope.search.FieldID = $scope.ListField[0].categoryID;
+            }
         }
 
         function _loadData() {
             $scope.GridListItem = null;
+            $scope.DataOrigin = null;
+            $scope.dataFinish = false;
+
             categoryService.GetAllCategories().then(
                 function (response) {                    
                     $scope.GridListItem = response.data;
+                    $scope.DataOrigin = response.data;
+
+                    _loadFillField();
+
+                    $scope.dataFinish = true;
                 },
                 function (error) {
                     $scope.GridListItem = null;
+                    $scope.DataOrigin = null;
                 }
             );
 
             fieldService.GetAllCategorys().then(
                 function (response) {
                     _listField = response.data;
+
+                    _loadFillField();
+                    $scope.ListField = _listField;
+                    if (_listField.length > 0) {
+                        $scope.search.FieldID = _listField[0].categoryID;
+                    }
+
+                    $scope.dataFinish = true;
                 },
                 function (error) {
                     _listField = null;
@@ -50,8 +74,31 @@
             );
         }
 
-        function _searchCategory() {
+        function _loadFillField() {
+            if ($scope.dataFinish === true) {
+                $scope.DataOrigin.forEach(function (item) {
+                    var fieldData = _listField.filter(function (field) {
+                        return field.categoryID == item.parentID;
+                    });
+                    if (fieldData != null && fieldData.length > 0) {
+                        item.fieldName = fieldData[0].categoryName;
+                        item.fieldID = fieldData[0].categoryID;
+                    }
+                });
+                $scope.GridListItem = $scope.DataOrigin;
+            }
+        }
 
+        function _searchCategory() {
+            if ($scope.search.CategoryName === "") {
+                $scope.msgCategoryName = "Nhập tên loại sách";
+                return;
+            }
+            $scope.msgCategoryName = "";
+            $scope.GridListItem = $scope.DataOrigin.filter(function (item) {
+                return commonService.ContainText(item.categoryName, $scope.search.CategoryName)
+                    && item.fieldID === $scope.search.FieldID;
+            });
         }
 
         function _createCategory() {

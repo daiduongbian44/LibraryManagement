@@ -22,6 +22,19 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input class="form-control" placeholder="Tên loại sách" ng-model="search.CategoryName">
+                                                <div class="alert alert-warning" ng-show="msgCategoryName != ''">
+                                                    {{msgCategoryName}}
+                                                </div>
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Lĩnh vực</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <select class="form-control" ng-model="search.FieldID" data-ng-options="item.categoryID as item.categoryName for item in ListField" required></select>
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -61,6 +74,7 @@
                                     <tr>
                                         <th width="80px">Mã thể loại</th>
                                         <th width="80px">Tên thể loại</th>
+                                        <th width="80px">Tên chuyên ngành</th>
                                         <th width="80px">Thao tác</th>
                                     </tr>
                                 </thead>
@@ -69,6 +83,7 @@
                                         <td>{{item.categoryID}}</td>
                                         <!--<td><img ng-src="{{item.imageURL}}" style="max-width: 80px; max-height: 80px;" /></td>-->
                                         <td>{{item.categoryName}}</td>
+                                        <td>{{item.fieldName}}</td>
                                         <td>
                                             <button class="btn btn-warning btn-xs" type="button" title="Sửa"
                                                     ng-click="GridFnEdit(item)">
