@@ -1,6 +1,6 @@
 ﻿<div class="modal-header alert alert-info">
     <button type="button" class="close" ng-click="FnCloseModal()" aria-hidden="true">&times;</button>
-    <h4>Thêm tài khoản mới</h4>
+    <h4>Chỉnh sửa tài khoản</h4>
 </div>
 <div class="modal-body">
     <form name="form">
@@ -19,13 +19,9 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row"><label>Ảnh đại diện</label></div>
+                    <div class="row"><label>Ảnh đại diện</label></div>                   
                     <div class="row">
-                        <div class="btn btn-primary" ngf-select ng-model="fileImage" name="file" ngf-pattern="'image/*'"
-                             ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</div>
-                    </div>
-                    <div class="row">
-                        <img ng-src="{{user.ImageURL}}" class="img-avatar" />
+                        <img ng-src="{{user.ImageURL}}" class="img-avatar padding-10"/>
                     </div>
                 </div>
             </div>
@@ -72,11 +68,11 @@
 
 <style type="text/css">
     .img-avatar {
-        background: grey;
+        background: white;
         min-width: 100px;
-        min-height: 100px;
-        max-height: 300px;
-        max-width: 300px;
+        min-height: 120px;
+        max-height: 100px;
+        max-width: 120px;
         display: block;
     }
 

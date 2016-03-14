@@ -17,8 +17,8 @@
             FullName: "",
             Email: "",
             Address: "",
-            PhoneNumber: 0,
-            RoleID: 3            
+            PhoneNumber: 0,            
+            ImageURL: "Uploads/avartar.jpg"
         };
 
         var _user = {
@@ -38,32 +38,34 @@
         }
 
         function _fnSave() {
-            if ($scope.form.file.$valid
-                && $scope.form.username.$valid
-                && $scope.fileImage) Upload.upload({
-                    url: 'api/upload/image',
-                    data: { file: $scope.fileImage }
-                }).then(function (resp) {                
+            if ($scope.form.fullname.$valid &&
+                $scope.form.email.$valid && $scope.form.phonenumber.$valid && $scope.form.address.$valid) {
 
-                    _user.ImageURL = resp.data.data;
-                    _user.UserName = $scope.user.UserName;
-                    _user.PassWord = $scope.user.PassWord;
-                    _user.FullName = $scope.user.FullName;
-                    _user.Email = $scope.user.Email;
-                    _user.Address = $scope.user.Address;
-                    _user.PhoneNumber = $scope.user.PhoneNumber;
-                    _user.RoleID = $scope.user.RoleID;
+                _user.ImageURL = $scope.user.ImageURL;
+                _user.UserName = $scope.user.UserName;
+                _user.PassWord = $scope.user.PassWord;
+                _user.FullName = $scope.user.FullName;
+                _user.Email = $scope.user.Email;
+                _user.Address = $scope.user.Address;
+                _user.PhoneNumber = $scope.user.PhoneNumber;
+                _user.RoleID = $scope.user.RoleID;
 
-                    // broadcast data to save
-                    $rootScope.$broadcast("CREATE_USER", { data: _user });
+                // broadcast data to save
+                $rootScope.$broadcast("CREATE_USER", { data: _user });
 
-                    _fnCloseModal();
-
-                }, function (resp) {
-                    alert("Xảy ra lỗi trong quá trình upload ảnh.");
-                }, function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                });
+                _fnCloseModal();
+            }
+            else {
+                $scope.message = "Thông tin bạn nhập không hợp lệ.";
+            }
+        }
+        function _textChange() {
+            if (!$scope.form.fullname.$valid ||
+                !$scope.form.email.$valid || !$scope.form.phonenumber.$valid || !$scope.form.address.$valid) {
+                $scope.message = "Thông tin bạn nhập không hợp lệ.";
+            } else {
+                $scope.message = "";
+            }
         }
     }
 })();
