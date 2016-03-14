@@ -1,0 +1,138 @@
+﻿<div class="modal-header alert alert-info">
+    <button type="button" class="close" ng-click="FnCloseModal()" aria-hidden="true">&times;</button>
+    <h4>Thay đổi thông tin cuốn sách</h4>
+</div>
+<div class="modal-body">
+    <form name="form">
+
+        <div class="row padding-10">
+            <div data-ng-hide="message == ''" class="alert alert-danger">
+                {{message}}
+            </div>
+        </div>
+
+        <div class="row padding-10">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tên sách<span class="span-red-star">*</span></label>
+                    <input class="form-control" placeholder="Tên sách" ng-model="book.bookName" name="name" required />
+                    <p class="help-block"></p>
+                </div>
+                <div class="form-group">
+                    <label>Loại sách<span class="span-red-star">*</span></label>
+                    <select class="form-control" ng-model="book.categoryID" data-ng-options="item.categoryID as item.categoryName for item in ListCategory" required></select>
+                    <p class="help-block"></p>
+                </div>
+                <div class="form-group">
+                    <label>Số lượng (quyển)<span class="span-red-star">*</span></label>
+                    <input class="form-control" placeholder="Số lượng" name="quantity" ng-model="book.quantity" required />
+                    <p class="help-block"></p>
+                </div>
+                <div class="form-group">
+                    <label>Các tác giả<span class="span-red-star">*</span></label>
+
+                    <div isteven-multi-select
+                         input-model="ListAuthor"
+                         output-model="ListAuthorSelect"
+                         button-label="icon name"
+                         item-label="icon name"
+                         tick-property="ticked" translation="localLang">
+                    </div>
+
+                    <p class="help-block"></p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ảnh bìa<span class="span-red-star">*</span></label><br/>
+                    <img class="img-avatar" ng-src="{{book.imageURL}}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row padding-10">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ISBN</label>
+                    <input class="form-control" placeholder="ISBN" ng-model="book.iSBN" />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Giá bìa (đơn vị đồng)<span class="span-red-star">*</span></label>
+                    <input class="form-control" name="price" ng-model="book.bookPrice" required>
+                    <p class="help-block"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row padding-10">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nhà xuất bản<span class="span-red-star">*</span></label>
+                    <input class="form-control" placeholder="Nhà xuất bản" name="publisher" ng-model="book.publisher" required />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ngôn ngữ<span class="span-red-star">*</span></label>
+                    <input class="form-control" placeholder="Ngôn ngữ" name="language" ng-model="book.language" required />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row padding-10">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Số trang (trang)</label>
+                    <input class="form-control" placeholder="Số trang" ng-model="book.hardCover" />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+
+        <div class="row padding-10">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Mô tả chi tiết</label>
+                    <textarea class="form-control" id="text-desc" ng-model="book.bookDesc" />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer alert alert-info">
+    <button type="button" class="btn btn-primary" ng-click="FnSave()">Lưu</button>
+    <button type="button" class="btn btn-danger" ng-click="FnCloseModal()">Thoát</button>
+</div>
+
+<style type="text/css">
+    .img-avatar {
+        background: grey;
+        min-width: 100px;
+        min-height: 100px;
+        max-height: 200px;
+        max-width: 200px;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .padding-10 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #text-desc {
+        min-height: 200px;
+    }
+    .span-red-star{
+        color: red;
+    }
+</style>

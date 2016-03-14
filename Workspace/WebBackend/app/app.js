@@ -200,6 +200,7 @@ app.config([
                             'app/Sections/QT70/bookService.js',
                             'app/Sections/QT30/categoryService.js',
                             'app/Sections/QT50/authorService.js',
+                            'app/Sections/QT10/fieldService.js',
                         ]
                     });
                 }

@@ -21,7 +21,7 @@
         $scope.GridFnStop = _stopItem;
         $scope.GridFnRestore = _restoreItem;
         $scope.msgCategoryName = "";
-        $scope.dataFinish = false;
+        $scope.dataFinish = 0;
 
         var _listField;
 
@@ -39,16 +39,14 @@
         function _loadData() {
             $scope.GridListItem = null;
             $scope.DataOrigin = null;
-            $scope.dataFinish = false;
+            $scope.dataFinish = 0;
 
             categoryService.GetAllCategories().then(
-                function (response) {                    
+                function (response) {
+                    $scope.dataFinish = $scope.dataFinish + 1;
                     $scope.GridListItem = response.data;
                     $scope.DataOrigin = response.data;
-
                     _loadFillField();
-
-                    $scope.dataFinish = true;
                 },
                 function (error) {
                     $scope.GridListItem = null;
@@ -56,17 +54,15 @@
                 }
             );
 
-            fieldService.GetAllCategorys().then(
+            fieldService.GetAllCategories().then(
                 function (response) {
+                    $scope.dataFinish = $scope.dataFinish + 1;
                     _listField = response.data;
-
                     _loadFillField();
                     $scope.ListField = _listField;
                     if (_listField.length > 0) {
                         $scope.search.FieldID = _listField[0].categoryID;
                     }
-
-                    $scope.dataFinish = true;
                 },
                 function (error) {
                     _listField = null;
@@ -75,7 +71,7 @@
         }
 
         function _loadFillField() {
-            if ($scope.dataFinish === true) {
+            if ($scope.dataFinish === 2) {
                 $scope.DataOrigin.forEach(function (item) {
                     var fieldData = _listField.filter(function (field) {
                         return field.categoryID == item.parentID;
@@ -122,7 +118,11 @@
         }
 
         function _clickRow(index) {
-            $scope.GridSelectedIndex = index;
+            if (index == $scope.GridSelectedIndex) {
+                $scope.GridSelectedIndex = -1;
+            } else {
+                $scope.GridSelectedIndex = index;
+            }
         }
 
         function _editItem(item) {

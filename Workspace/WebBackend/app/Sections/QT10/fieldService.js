@@ -10,7 +10,7 @@
         var _CategoryLevel = 1;
 
         var Factory = {
-            GetAllCategorys: _getAll,
+            GetAllCategories: _getAll,
             SaveField: _saveField,
         };
         return Factory;
