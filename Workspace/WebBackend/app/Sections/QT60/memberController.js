@@ -2,9 +2,9 @@
     'use strict'
     angular.module('LibManageApp').controller('memberController', memberController);
 
-    memberController.$inject = ['$scope', '$location', 'ngAuthSettings', 'memberService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    memberController.$inject = ['$scope', '$location', 'commonService', 'ngAuthSettings', 'memberService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function memberController($scope, $location, ngAuthSettings, memberService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function memberController($scope, $location, commonService, ngAuthSettings, memberService, $ocLazyLoad, $modal, DTOptionsBuilder) {
         $scope.boxsearch = {
             open: true,
         };
@@ -20,6 +20,8 @@
         $scope.GridFnEdit = _editItem;
         $scope.GridFnStop = _stopItem;
         $scope.GridFnRestore = _restoreItem;
+        $scope.DataOrigin = null;
+        $scope.msgUserName = "";
 
         var _listRole;
 
@@ -27,6 +29,8 @@
             $scope.search = {
                 UserName: ""
             };
+            $scope.GridListItem = $scope.DataOrigin;
+            $scope.msgUserName = "";
         }
 
         function _loadData() {
@@ -34,6 +38,7 @@
             memberService.GetAllUsers().then(
                 function (response) {
                     $scope.GridListItem = response.data;
+                    $scope.DataOrigin = response.data;
                 },
                 function (error) {
                     $scope.GridListItem = null;
@@ -51,7 +56,14 @@
         }
 
         function _searchUser() {
-
+            $scope.msgUserName = "";
+            if ($scope.search.UserName == "") {
+                $scope.msgUserName = "Nhập tên người dùng";
+                return;
+            }
+            $scope.GridListItem = $scope.DataOrigin.filter(function (item) {
+                return commonService.ContainText(item.userName, $scope.search.UserName);
+            });
         }
 
         function _createUser() {

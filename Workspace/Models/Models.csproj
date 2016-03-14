@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Author\AuthorItemModel.cs" />
     <Compile Include="Author\AuthorModel.cs" />
     <Compile Include="Book\BookModel.cs" />
     <Compile Include="Category\CategoryModel.cs" />

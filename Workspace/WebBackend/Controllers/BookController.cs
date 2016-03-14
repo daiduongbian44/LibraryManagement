@@ -16,6 +16,7 @@ namespace WebBackend.Controllers
 
         [Authorize]
         [Route("savebook")]
+        [HttpPost]
         public IHttpActionResult SaveBook(BookModel book)
         {
             var result = new ApiResult()
@@ -38,6 +39,30 @@ namespace WebBackend.Controllers
 
                 result.Status = Constant.API_RESULT_ERROR;
                 result.Messages = "Xảy ra lỗi khi lưu cuốn sách";
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [Route("getbooks")]
+        [HttpPost]
+        public IHttpActionResult GetBooks()
+        {
+            var result = new ApiResult()
+            {
+                Status = Constant.API_RESULT_SUCCESS,
+                Data = null
+            };
+            try
+            {
+                BookBLL bll = new BookBLL();
+                result.Data = bll.GetAllBooks();
+            }
+            catch (Exception ex)
+            {
+                result.Status = Constant.API_RESULT_ERROR;
+                result.Messages = ex.Message;
             }
 
             return Ok(result);
@@ -72,6 +97,5 @@ namespace WebBackend.Controllers
 
             return Ok(result);
         }
-
     }
 }

@@ -2,9 +2,9 @@
     'use strict'
     angular.module('LibManageApp').controller('fieldController', fieldController);
 
-    fieldController.$inject = ['$scope', '$location', 'ngAuthSettings', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
+    fieldController.$inject = ['$scope', '$location', 'ngAuthSettings', 'commonService', 'fieldService', '$ocLazyLoad', '$modal', 'DTOptionsBuilder'];
 
-    function fieldController($scope, $location, ngAuthSettings, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
+    function fieldController($scope, $location, ngAuthSettings, commonService, fieldService, $ocLazyLoad, $modal, DTOptionsBuilder) {
 
         $scope.boxsearch = {
             open: true,
@@ -21,10 +21,14 @@
         $scope.GridFnEdit = _editItem;
         $scope.GridFnDelete = _deleteItem;
 
+        $scope.DataOrigin = null;
+
         function _initSearch() {
             $scope.search = {
                 CategoryName: ""
             };
+            $scope.msgCategoryName = "";
+            $scope.GridListItem = $scope.DataOrigin;
         }
 
         function _loadData() {
@@ -33,15 +37,27 @@
                 function (response) {
                     //console.log(response.data);
                     $scope.GridListItem = response.data;
+                    $scope.DataOrigin = response.data;
                 },
                 function (error) {
                     $scope.GridListItem = null;
+                    $scope.DataOrigin = null;
                 }
             );
         }
 
         function _searchCategory() {
-
+            if ($scope.search.CategoryName === "") {
+                $scope.msgCategoryName = "Nhập tên chuyên ngành";
+                return;
+            }
+            $scope.msgCategoryName = "";
+            $scope.GridListItem = [];
+            $scope.DataOrigin.forEach(function (item) {
+                if (commonService.ContainText(item.categoryName, $scope.search.CategoryName)) {
+                    $scope.GridListItem.push(item);
+                }
+            });
         }
 
         function _createCategory() {

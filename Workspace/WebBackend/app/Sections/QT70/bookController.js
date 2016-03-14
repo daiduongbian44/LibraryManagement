@@ -23,6 +23,7 @@
 
         $scope.ListAuthor = null;
         $scope.ListCategory = null;
+        $scope.GridListItem = null;
 
         function _initSearch() {
             
@@ -45,9 +46,19 @@
                 },
                 function (error) {
                     $scope.ListCategory = null;
-                    alert("Không thể lấy danh sách loại sách");
+                    alert("Không thể lấy danh sách loại sách.");
                 }
             );
+            bookService.GetAllBooks().then(
+                function (response) {
+                    $scope.GridListItem = response.data;
+                },
+                function (error) {
+                    $scope.GridListItem = null;
+                    alert("Không thể lấy danh sách cuốn sách.");
+                }
+            );
+
         }
 
         function _search() {

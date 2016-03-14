@@ -22,6 +22,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input class="form-control" placeholder="Tên tài khoản" ng-model="search.UserName">
+                                                <div class="alert alert-warning" ng-show="msgUserName != ''">
+                                                    {{msgUserName}}
+                                                </div>
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>
@@ -60,7 +63,7 @@
                                 <thead>
                                     <tr>                                   
                                         <th width="110px">Ảnh đại diện</th>                                             
-                                        <th width="80px">Họ Tên</th>
+                                        <th width="80px">Tên tài khoản</th>
                                         <th width="80px">Email</th>
                                         <th width="80px">Địa chỉ</th>
                                         <th width="80px">Số điện thoại</th>    
@@ -71,7 +74,7 @@
                                 <tbody>
                                     <tr ng-repeat="item in GridListItem" ng-class="{'selected':$index == GridSelectedIndex}" ng-click="GridFnClickRow($index)">                                        
                                         <td><img ng-src="{{item.imageURL}}" style="max-width: 80px; max-height: 80px;" /></td>                                        
-                                        <td>{{item.fullName}}</td>
+                                        <td>{{item.userName}}</td>
                                         <td>{{item.email}}</td>
                                         <td>{{item.address}}</td>
                                         <td>{{item.phoneNumber}}</td>

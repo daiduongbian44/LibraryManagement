@@ -21,6 +21,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input class="form-control" placeholder="Tên chuyên ngành" ng-model="search.CategoryName">
+                                                <div ng-show="msgCategoryName != ''" class="alert alert-warning">
+                                                    {{msgCategoryName}}
+                                                </div>
                                                 <p class="help-block"></p>
                                             </div>
                                         </div>

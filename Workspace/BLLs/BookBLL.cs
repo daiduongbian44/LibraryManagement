@@ -27,6 +27,15 @@ namespace BLLs
         {
             return _dal.SaveBook(book);
         }
+        /// <summary>
+        /// Return all books from database
+        /// </summary>
+        /// <returns></returns>
+        public List<BookModel> GetAllBooks()
+        {
+            return _dal.GetAllBooks();
+        }
+
 
         public bool ChangeBookStatus(long bookID, int statusTypeID)
         {

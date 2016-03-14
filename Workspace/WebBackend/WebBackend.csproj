@@ -230,6 +230,7 @@
     <Content Include="app\Sections\samplePages\ui-elements\notifications.html" />
     <Content Include="app\Sections\samplePages\ui-elements\panels-wells.html" />
     <Content Include="app\Sections\samplePages\ui-elements\typography.html" />
+    <Content Include="app\Shared\commonService.js" />
     <Content Include="app\Shared\DashboardLayout.html" />
     <Content Include="bower_components\angular-animate\angular-animate.js" />
     <Content Include="bower_components\angular-bootstrap\ui-bootstrap-tpls.min.js" />
