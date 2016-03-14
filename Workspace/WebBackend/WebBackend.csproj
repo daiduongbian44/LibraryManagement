@@ -215,6 +215,8 @@
     <Content Include="app\Sections\QT70\bookService.js" />
     <Content Include="app\Sections\QT70\create\controller.js" />
     <Content Include="app\Sections\QT70\create\view.html" />
+    <Content Include="app\Sections\QT70\edit\controller.js" />
+    <Content Include="app\Sections\QT70\edit\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
     <Content Include="app\Sections\samplePages\chart.html" />
@@ -429,7 +431,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\Sections\QT70\edit\" />
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

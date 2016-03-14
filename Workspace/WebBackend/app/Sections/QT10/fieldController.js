@@ -33,7 +33,7 @@
 
         function _loadData() {
             $scope.GridListItem = null;
-            fieldService.GetAllCategorys().then(
+            fieldService.GetAllCategories().then(
                 function (response) {
                     //console.log(response.data);
                     $scope.GridListItem = response.data;
@@ -77,7 +77,11 @@
         }
 
         function _clickRow(index) {
-            $scope.GridSelectedIndex = index;
+            if (index == $scope.GridSelectedIndex) {
+                $scope.GridSelectedIndex = -1;
+            } else {
+                $scope.GridSelectedIndex = index;
+            }
         }
 
         function _editItem(item) {

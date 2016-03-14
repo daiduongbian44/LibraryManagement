@@ -18,8 +18,6 @@
                 var t1 = textOrigin.toLowerCase();
                 var t2 = textSearch.toLowerCase();
 
-                console.log(t1.indexOf(t2));
-
                 if (t1.indexOf(t2) > -1) {
                     return true;
                 }

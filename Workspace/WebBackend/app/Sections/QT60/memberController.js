@@ -87,7 +87,11 @@
         }
 
         function _clickRow(index) {
-            $scope.GridSelectedIndex = index;
+            if (index == $scope.GridSelectedIndex) {
+                $scope.GridSelectedIndex = -1;
+            } else {
+                $scope.GridSelectedIndex = index;
+            }
         }
 
         function _editItem(item) {
