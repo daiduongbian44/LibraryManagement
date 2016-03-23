@@ -6,6 +6,7 @@
 
     function createUserController($scope, $rootScope, $location, ngAuthSettings, $ocLazyLoad, ListRole, $modal, $modalInstance, Upload) {
 
+
         $scope.FnCloseModal = _fnCloseModal;
         $scope.FnSave = _fnSave;
         $scope.ListRole = ListRole;
@@ -20,16 +21,19 @@
             PhoneNumber: 0,            
             ImageURL: "Uploads/avartar.jpg"
         };
+        _selectDefault();
 
         var _user = {
             UserName: "",
         };
 
-        _selectDefault();
-
-        function _selectDefault() {
+        
+       
+       function _selectDefault() {
+           console.log(ListRole);
             if (ListRole != null && ListRole.length > 0) {
-                $scope.user.RoleID = ListRole[0].RoleID;
+                console.log(ListRole);
+                $scope.user.RoleID = ListRole[2].roleID;
             }
         }
 

@@ -65,6 +65,7 @@ namespace WebBackend.Providers
 
                             identity.AddClaim(new Claim("UserName", user.UserName));
                             identity.AddClaim(new Claim("UserId", user.UserID.ToString()));
+                            identity.AddClaim(new Claim("RoleID", user.RoleID.ToString()));
 
                             var props = new AuthenticationProperties(new Dictionary<string, string>
                             {

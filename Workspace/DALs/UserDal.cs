@@ -112,11 +112,22 @@ namespace DALs
         /// <returns></returns>
         public UserModel GetUserByUserName(string username)
         {
-            return new UserModel()
+            if (string.IsNullOrEmpty(username)) throw new ArgumentException("Username is empty");
+            const string procName = "scr_Get_User_ByUserName";
+            try
             {
-                UserID = 1,
-                UserName = "manh",
-            };
+                var param = new DynamicParameters();
+                param.Add("@UserName", username);
+
+                var con = DatabaseContext.getInstance().Connection;
+                var users = con.Query<UserModel>(procName, param, commandType: CommandType.StoredProcedure);
+                if (users.Count() <= 0) return null;
+                return (users.First());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         /// <summary>

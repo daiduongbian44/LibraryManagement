@@ -9,20 +9,18 @@
         $scope.FnCloseModal = _fnCloseModal;
         $scope.FnSave = _fnSave;
         $scope.ListRole = ListRole;
+        console.log(UserObject);
 
         var _user = {
             UserName: "",
             FullName: "",
             Email: "",
-            Address: "",
-            PhoneNumber: 0,
-            RoleID: 3,
-            UserID: 0
+            Address: ""
         };
 
 
         $scope.user = {
-            UserID: UserObject.userID,
+            UserID: UserObject.userID,            
             UserName: UserObject.userName,
             FullName: UserObject.fullName,
             Address: UserObject.address,
@@ -39,29 +37,30 @@
         function _fnSave() {
             if ($scope.form.username.$valid) {
 
-                _user.UserID = UserObject.UserID
-                _user.ImageURL = UserObject.ImageURL;
+                _user.UserID = $scope.user.UserID,
+                _user.UserName = $scope.user.UserName,                
+                _user.ImageURL = $scope.user.ImageURL;
                 _user.FullName = $scope.user.FullName;
                 _user.Email = $scope.user.Email;
                 _user.Address = $scope.user.Address;
                 _user.PhoneNumber = $scope.user.PhoneNumber;
                 _user.RoleID = $scope.user.RoleID;
 
-                // broadcast data to save
+                // broadcast data to save                
                 $rootScope.$broadcast("EDIT_USER", { data: _user });
 
                 _fnCloseModal();
 
-            } else {
-
-                _user.ImageURL = UserObject.ImageURL;
+            } else {                
+                
+                _user.ImageURL = $scope.user.ImageURL;
                 _user.FullName = $scope.user.FullName;
+                _user.UserName = $scope.user.UserName,                
                 _user.Email = $scope.user.Email;
                 _user.Address = $scope.user.Address;
                 _user.PhoneNumber = $scope.user.PhoneNumber;
                 _user.RoleID = $scope.user.RoleID;
-                _user.UserID = UserObject.userID
-
+                _user.UserID = $scope.user.userID                
                 // broadcast data to save
                 $rootScope.$broadcast("EDIT_USER", { data: _user });
 
