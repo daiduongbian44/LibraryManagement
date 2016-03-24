@@ -15,22 +15,13 @@
                     <label>Tên đăng nhập<span class="span-red-star">*</span></label>
                     <input class="form-control" placeholder="Tên đăng nhập" ng-model="user.UserName" name="username" required>
                     <p class="help-block"></p>
-                </div>
-                <div class="form-group">
-                    <label>Mật khẩu<span class="span-red-star">*</span></label>
-                    <input class="form-control" type="password" placeholder="Mật khẩu" ng-model="user.PassWord" name="password" required>
-                    <p class="help-block"></p>
-                </div>
+                </div>                
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <div class="row"><label>Ảnh đại diện</label></div>
+                    <div class="row"><label>Ảnh đại diện</label></div>                    
                     <div class="row">
-                        <div class="btn btn-primary" ngf-select ng-model="fileImage" name="file" ngf-pattern="'image/*'"
-                             ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</div>
-                    </div>
-                    <div class="row">
-                        <img ngf-src="fileImage" class="img-avatar" />
+                        <img ng-src="{{user.ImageURL}}" class="img-avatar padding-10"/>
                     </div>
                 </div>
             </div>
@@ -77,11 +68,11 @@
 
 <style type="text/css">
     .img-avatar {
-        background: grey;
+        background: white;
         min-width: 100px;
-        min-height: 100px;
-        max-height: 300px;
-        max-width: 300px;
+        min-height: 120px;
+        max-height: 100px;
+        max-width: 120px;
         display: block;
     }
 

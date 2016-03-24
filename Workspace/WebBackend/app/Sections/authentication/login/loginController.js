@@ -8,8 +8,8 @@
     function loginController($scope, $q, $http, $location, ngAuthSettings, authService) {
 
         $scope.loginData = {
-            username: "manh",
-            password: "123456"
+            username: "cuongtk",
+            password: "cuongtk"
         };
 
         $scope.message = "";
