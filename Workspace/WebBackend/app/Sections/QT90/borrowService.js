@@ -1,23 +1,23 @@
 ﻿(function () {
     'use strict'
 
-    angular.module('LibManageApp').factory('authorService', authorService);
+    angular.module('LibManageApp').factory('fieldService', fieldService);
 
-    authorService.$inject = ['$q', '$http', 'ngAuthSettings'];
+    fieldService.$inject = ['$q', '$http', 'ngAuthSettings'];
 
-    function authorService($q, $http, ngAuthSettings) {
+    function fieldService($q, $http, ngAuthSettings) {
+
+        var _CategoryLevel = 1;
 
         var Factory = {
-            GetAllAuthors: _getAllAuthors,
-            SaveAuthor: _saveAuthor,
-            ChangeStatus: _changeStatus,
+            GetAllCategories: _getAll,
+            SaveField: _saveField,
         };
         return Factory;
 
-        // return all authors from db
-        function _getAllAuthors() {
+        function _getAll() {
             var deferred = $q.defer();
-            var url = "/api/author/getauthors";
+            var url = "/api/category/getcategoryfields";
 
             $http.post(url,
                 null,
@@ -38,13 +38,12 @@
             return deferred.promise;
         }
 
-        // save an author to db
-        function _saveAuthor(author) {
+        function _saveField(category) {
             var deferred = $q.defer();
-            var url = "/api/author/saveauthor";
+            var url = "/api/category/savecategoryfield";
 
             $http.post(url,
-                JSON.stringify(author),
+                JSON.stringify(category),
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }
@@ -61,29 +60,5 @@
 
             return deferred.promise;
         }
-
-        function _changeStatus(author) {
-            var deferred = $q.defer();
-            var url = "/api/author/changeauthorstatus";
-
-            $http.post(url,
-                JSON.stringify(author),
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                }
-            )
-            .success(function (response) {
-                deferred.resolve(response);
-                return response;
-            })
-            .error(function (errMessage, statusCode) {
-                var result = { isSuccess: false, status: statusCode, message: errMessage };
-                deferred.reject(result);
-                return result;
-            });
-
-            return deferred.promise;
-        }
-
     }
 })();

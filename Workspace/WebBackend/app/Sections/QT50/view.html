@@ -76,12 +76,16 @@
                                         <td>
                                             <button class="btn btn-warning btn-xs" type="button" title="Sửa"
                                                     ng-click="GridFnEdit(item)">
-                                                <i class="fa fa-edit fa-fw"></i>
+                                                <i class="fa fa-edit fa-fw"></i> Sửa
                                             </button>
-                                            <!--<button class="btn btn-danger btn-xs" type="button" title="Xóa"
-                                                    ng-click="GridFnDelete(item, $index)">
-                                                <i class="fa fa-times fa-fw"></i>
-                                            </button>-->
+                                            <button class="btn btn-info btn-xs" type="button" title="Xóa" ng-show="item.statusTypeID == 2"
+                                                    ng-click="changeStatusActive(item, $index)">
+                                                Kích hoạt
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" type="button" title="Xóa" ng-show="item.statusTypeID == 1"
+                                                    ng-click="changeStatusDeActive(item, $index)">
+                                                Ngừng hoạt động
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>

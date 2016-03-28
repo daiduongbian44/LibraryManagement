@@ -68,7 +68,7 @@ namespace WebBackend.Controllers
         [HttpPost]
         [Authorize]
         [Route("changeauthorstatus")]
-        public IHttpActionResult ChangeAuthorStatus(AuthorModel author, int statusTypeID)
+        public IHttpActionResult ChangeAuthorStatus(AuthorModel author)
         {
             var result = new ApiResult()
             {
@@ -79,7 +79,7 @@ namespace WebBackend.Controllers
             {
                 AuthorBLL bll = new AuthorBLL();
 
-                bool value = bll.ChangeAuthorStatus(author.AuthorID, statusTypeID);
+                bool value = bll.ChangeAuthorStatus(author.AuthorID, author.StatusTypeID);
                 if (!value)
                 {
                     result.Status = Constant.API_RESULT_ERROR;

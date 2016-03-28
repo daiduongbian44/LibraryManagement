@@ -9,6 +9,8 @@
 
         var Factory = {
             ContainText: _containText,
+            GetActive: 1,
+            GetDeActive: 2
         };
         return Factory;
 
