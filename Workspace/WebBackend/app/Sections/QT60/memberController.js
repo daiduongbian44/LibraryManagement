@@ -34,7 +34,7 @@
         }
 
         function _loadData() {
-            $scope.GridListItem = null;
+            //$scope.GridListItem = null;
             memberService.GetAllUsers().then(
                 function (response) {
                     $scope.GridListItem = response.data;
@@ -144,13 +144,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Thêm tài khoản thành công.");
+                        $.notify("Thêm tài khoản thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm tài khoản.");
+                    $.notify("Xảy ra lỗi khi thêm tài khoản.", 'error');
                 }
             );
         });
@@ -161,13 +161,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Sửa thông tin tài khoản thành công.");
+                        $.notify("Sửa thông tin tài khoản thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi sửa thông tin tài khoản.");
+                    $.notify("Xảy ra lỗi khi sửa thông tin tài khoản.", 'error');
                 }
             );
         });

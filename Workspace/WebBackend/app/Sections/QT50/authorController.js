@@ -21,6 +21,8 @@
         $scope.GridFnDelete = _deleteItem;
         $scope.DataOrigin = null;
         $scope.msgAuthorName = "";
+        $scope.changeStatusActive = changeStatusActive;
+        $scope.changeStatusDeActive = changeStatusDeActive;
 
         function _initSearch() {
             $scope.search = {
@@ -31,11 +33,12 @@
         }
 
         function _loadData() {
-            $scope.GridListItem = null;
+            //$scope.GridListItem = null;
             authorService.GetAllAuthors().then(
                 function (response) {
                     $scope.GridListItem = response.data;
                     $scope.DataOrigin = response.data;
+                    //console.log(response.data);
                 },
                 function (error) {
                     $scope.GridListItem = null;
@@ -103,6 +106,40 @@
 
         }
 
+        function changeStatusActive(item, index) {
+            item.statusTypeID = commonService.GetActive;
+            authorService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
+        function changeStatusDeActive(item, index) {
+            item.statusTypeID = commonService.GetDeActive;
+            authorService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
+
+
         $scope.GridDtOptions = DTOptionsBuilder.newOptions()
             .withScroller()
             .withBootstrap()
@@ -124,13 +161,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Thêm tác giả thành công.");
+                        $.notify("Thêm tác giả thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm tác giả.");
+                    $.notify("Xảy ra lỗi khi thêm tác giả.", 'error');
                 }
             );
         });
@@ -142,13 +179,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Sửa tác giả thành công.");
+                        $.notify("Sửa tác giả thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi sửa tác giả.");
+                    $.notify("Xảy ra lỗi khi sửa tác giả.", 'error');
                 }
             );
         });

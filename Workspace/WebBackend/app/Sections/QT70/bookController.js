@@ -281,13 +281,13 @@
                     function (res) {
                         if (res.status !== "error") {
                             _loadData();
-                            alert("Thêm cuốn sách thành công.");
+                            $.notify("Thêm cuốn sách thành công.", 'success');
                         } else {
-                            alert(res.messages);
+                            $.notify(res.messages, 'error');
                         }
                     },
                     function (error) {
-                        alert("Xảy ra lỗi khi thêm cuốn sách.");
+                        $.notify("Xảy ra lỗi khi thêm cuốn sách.", 'error');
                     }
                 );
             });
@@ -302,13 +302,13 @@
                     function (res) {
                         if (res.status !== "error") {
                             _loadData();
-                            alert("Sửa cuốn sách thành công.");
+                            $.notify("Sửa cuốn sách thành công.", 'success');
                         } else {
-                            alert(res.messages);
+                            $.notify(res.messages, 'error');
                         }
                     },
                     function (error) {
-                        alert("Xảy ra lỗi khi sửa cuốn sách.");
+                        $.notify("Xảy ra lỗi khi sửa cuốn sách.", 'error');
                     }
                 );
             });

@@ -37,8 +37,8 @@
         }
 
         function _loadData() {
-            $scope.GridListItem = null;
-            $scope.DataOrigin = null;
+            //$scope.GridListItem = null;
+            //$scope.DataOrigin = null;
             $scope.dataFinish = 0;
 
             categoryService.GetAllCategories().then(
@@ -175,13 +175,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Thêm loại sách thành công.");
+                        $.notify("Thêm loại sách thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi thêm loại sách.");
+                    $.notify("Xảy ra lỗi khi thêm loại sách.", 'error');
                 }
             );
         });
@@ -192,13 +192,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        alert("Sửa loại sách thành công.");
+                        $.notify("Sửa loại sách thành công.", 'success');
                     } else {
-                        alert(res.messages);
+                        $.notify(res.messages, 'error');
                     }
                 },
                 function (error) {
-                    alert("Xảy ra lỗi khi sửa loại sách.");
+                    $.notify("Xảy ra lỗi khi sửa loại sách.", 'error');
                 }
             );
         });

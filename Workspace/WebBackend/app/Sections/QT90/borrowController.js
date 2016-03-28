@@ -129,13 +129,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        $.notify("Thêm chuyên ngành thành công.", 'success');
+                        alert("Thêm chuyên ngành thành công.");
                     } else {
-                        $.notify(res.messages, 'error');
+                        alert(res.messages);
                     }
                 },
                 function (error) {
-                    $.notify("Xảy ra lỗi khi thêm chuyên ngành.", 'error');
+                    alert("Xảy ra lỗi khi thêm chuyên ngành.");
                 }
             );
         });
@@ -146,13 +146,13 @@
                 function (res) {
                     if (res.status !== "error") {
                         _loadData();
-                        $.notify("Sửa chuyên ngành thành công.", 'success');
+                        alert("Sửa chuyên ngành thành công.");
                     } else {
-                        $.notify(res.messages, 'error');
+                        alert(res.messages);
                     }
                 },
                 function (error) {
-                    $.notify("Xảy ra lỗi khi sửa chuyên ngành.", 'error');
+                    alert("Xảy ra lỗi khi sửa chuyên ngành.");
                 }
             );
         });

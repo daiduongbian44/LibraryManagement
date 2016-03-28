@@ -218,6 +218,8 @@
     <Content Include="app\Sections\QT70\edit\controller.js" />
     <Content Include="app\Sections\QT70\edit\view.html" />
     <Content Include="app\Sections\QT70\view.html" />
+    <Content Include="app\Sections\QT90\borrowController.js" />
+    <Content Include="app\Sections\QT90\borrowService.js" />
     <Content Include="app\Sections\QT90\view.html" />
     <Content Include="app\Sections\samplePages\chart.html" />
     <Content Include="app\Sections\samplePages\chartController.js" />
@@ -364,6 +366,8 @@
     <Content Include="bower_components\ng-file-upload\src\validate.js" />
     <Content Include="bower_components\ng-file-upload\test\index.html" />
     <Content Include="bower_components\ng-file-upload\test\spec\test.js" />
+    <Content Include="bower_components\notify\bootstrap-notify.min.js" />
+    <Content Include="bower_components\notify\notify.min.js" />
     <Content Include="bower_components\oclazyload\ocLazyLoad.min.js" />
     <Content Include="content\css\SbAdmin\main.css" />
     <Content Include="content\css\SbAdmin\sb-admin-2.css" />
