@@ -10,7 +10,11 @@
         var Factory = {
             ContainText: _containText,
             GetActive: 1,
-            GetDeActive: 2
+            GetDeActive: 2,
+            GetActiveMember: 3,
+            GetDeActiveMember: 2,
+            GetBanMember: 5,
+            GetRestoreMember: 4
         };
         return Factory;
 

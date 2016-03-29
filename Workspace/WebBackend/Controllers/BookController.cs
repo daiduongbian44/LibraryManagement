@@ -71,7 +71,7 @@ namespace WebBackend.Controllers
         [HttpPost]
         [Authorize]
         [Route("changebookstatus")]
-        public IHttpActionResult ChangeBookStatus(BookModel book, int statusTypeID)
+        public IHttpActionResult ChangeBookStatus(BookModel book)
         {
             var result = new ApiResult()
             {
@@ -82,7 +82,7 @@ namespace WebBackend.Controllers
             {
                 BookBLL bll = new BookBLL();
 
-                bool value = bll.ChangeBookStatus(book.BookID, statusTypeID);
+                bool value = bll.ChangeBookStatus(book.BookID, book.StatusTypeID);
                 if (!value)
                 {
                     result.Status = Constant.API_RESULT_ERROR;

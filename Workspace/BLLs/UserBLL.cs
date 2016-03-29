@@ -27,6 +27,12 @@ namespace BLLs
             return _dal.SaveUser(user);
         }
 
+        public void ChangeStatus(long userID, int statusTypeID)
+        {
+
+             _dal.ChangeStatus(userID, statusTypeID);
+        }
+
         public List<UserModel> GetUsers()
         {
             return _dal.GetListUsers();

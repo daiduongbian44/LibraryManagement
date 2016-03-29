@@ -38,6 +38,24 @@ namespace DALs
             }
         }
 
+        public void ChangeStatus(long userID, int statusTypeID)
+        {
+            const string procName = "scr_Update_UserStatusType";
+            try
+            {                
+                var param = new DynamicParameters();
+                param.Add("@UserID", userID);
+                param.Add("@StatusTypeID", statusTypeID);
+
+                var con = DatabaseContext.getInstance().Connection;
+                con.Execute(procName, param, commandType: CommandType.StoredProcedure);                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Update lastlogin datetime of user
         /// </summary>

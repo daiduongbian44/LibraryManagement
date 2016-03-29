@@ -18,8 +18,10 @@
         $scope.GridFnCreate = _create;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
-        $scope.GridFnEdit = _editItem;
-        $scope.GridFnDelete = _deleteItem;
+        $scope.GridFnEdit = _editItem;        
+        $scope.changeStatusActive = changeStatusActive;
+        $scope.changeStatusDeActive = changeStatusDeActive;
+
 
         $scope.ListAuthor = null;
         $scope.ListCategory = null;
@@ -256,8 +258,37 @@
             });
         }
 
-        function _deleteItem(item, index) {
-
+        function changeStatusActive(item, index) {
+            item.statusTypeID = commonService.GetActive;
+            bookService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
+        function changeStatusDeActive(item, index) {
+            item.statusTypeID = commonService.GetDeActive;
+            bookService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
 
         function _onEvent() {

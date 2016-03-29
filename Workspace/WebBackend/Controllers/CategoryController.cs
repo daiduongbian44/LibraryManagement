@@ -123,7 +123,7 @@ namespace WebBackend.Controllers
         [HttpPost]
         [Authorize]
         [Route("changecategorystatus")]
-        public IHttpActionResult ChangeBookStatus(CategoryModel category, int statusTypeID)
+        public IHttpActionResult ChangeBookStatus(CategoryModel category)
         {
             var result = new ApiResult()
             {
@@ -134,7 +134,7 @@ namespace WebBackend.Controllers
             {
                 CategoryBLL bll = new CategoryBLL();
 
-                bool value = bll.ChangeCategoryStatus(category.CategoryID, statusTypeID);
+                bool value = bll.ChangeCategoryStatus(category.CategoryID, category.StatusTypeID);
                 if (!value)
                 {
                     result.Status = Constant.API_RESULT_ERROR;

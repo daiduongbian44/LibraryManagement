@@ -17,11 +17,13 @@
         $scope.GridFnCreate = _createUser;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
-        $scope.GridFnEdit = _editItem;
-        $scope.GridFnStop = _stopItem;
-        $scope.GridFnRestore = _restoreItem;
+        $scope.GridFnEdit = _editItem;       
         $scope.DataOrigin = null;
         $scope.msgUserName = "";
+        $scope.changeStatusActive = changeStatusActive;
+        $scope.changeStatusDeActive = changeStatusDeActive;
+        $scope.changeStatusBanAccount = changeStatusBanAccount;
+        $scope.changeStatusRestore = changeStatusRestore;
 
         var _listRole;
 
@@ -117,11 +119,71 @@
             });
         }
 
-        function _stopItem(item, index) {
-
+        function changeStatusActive(item, index) {
+            item.statusTypeID = commonService.GetActiveMember;
+            memberService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
-        function _restoreItem(item, index) {
+        function changeStatusDeActive(item, index) {
+            item.statusTypeID = commonService.GetDeActiveMember;
+            memberService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
 
+        function changeStatusBanAccount(item, index) {
+            item.statusTypeID = commonService.GetBanMember;
+            memberService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
+
+        function changeStatusRestore(item, index) {
+            item.statusTypeID = commonService.GetRestoreMember;
+            memberService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
 
         $scope.GridDtOptions = DTOptionsBuilder.newOptions()

@@ -79,18 +79,26 @@
                                         <td>{{item.address}}</td>
                                         <td>{{item.phoneNumber}}</td>
                                         <td>{{item.statusTypeName}}</td>
-                                        <td>
-                                            <button class="btn btn-warning btn-xs" type="button" title="Sửa"
+                                        <td width="170px">
+                                            <button class="btn btn-warning btn-xs" type="button" title="Sửa" ng-show="item.statusTypeID != 2"
                                                     ng-click="GridFnEdit(item)">
                                                 <i class="fa fa-edit fa-fw"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-xs" type="button" title="Tạm dừng"
-                                                    ng-click="GridFnStop(item, $index)">
-                                                <i class="fa fa-times fa-fw"></i>
+                                            <button class="btn btn-info btn-xs" type="button" title="" ng-show="item.statusTypeID == 1"
+                                                    ng-click="changeStatusActive(item, $index)">
+                                                Kích hoạt
                                             </button>
-                                            <button class="btn btn-success btn-xs" type="button" title="Khôi phục"
-                                                    ng-click="GridFnRestore(item, $index)">
-                                                <i class="fa fa-times fa-fw"></i>
+                                            <button class="btn btn-danger btn-xs" type="button" title="Từ chối yêu cầu" ng-show="item.statusTypeID == 1"
+                                                    ng-click="changeStatusDeActive(item, $index)">
+                                                Từ chối
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" type="button" title="Cấm tài khoản tạm thời" ng-show="item.statusTypeID == 4"
+                                                    ng-click="changeStatusBanAccount(item, $index)">
+                                                Cấm tài khoản
+                                            </button>
+                                            <button class="btn btn-info btn-xs" type="button" title="Khôi phục tài khoản" ng-show="item.statusTypeID == 5"
+                                                    ng-click="changeStatusRestore(item, $index)">
+                                                Khôi phục
                                             </button>
                                         </td>
                                     </tr>
