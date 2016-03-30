@@ -103,19 +103,19 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in GridListItem" ng-class="{'selected':$index == GridSelectedIndex}" ng-click="GridFnClickRow($index)">
-                                        <td>
+                                        <td width="120px">
                                             <button class="btn btn-warning btn-xs" type="button" title="Sửa"
                                                     ng-click="GridFnEdit(item)">
                                                 <i class="fa fa-edit fa-fw"></i>
                                             </button>
-                                            <!--<button class="btn btn-danger btn-xs" type="button" title="Tạm dừng"
-                                                        ng-click="GridFnStop(item, $index)">
-                                                    <i class="fa fa-times fa-fw"></i>
-                                                </button>
-                                                <button class="btn btn-success btn-xs" type="button" title="Khôi phục"
-                                                        ng-click="GridFnRestore(item, $index)">
-                                                    <i class="fa fa-times fa-fw"></i>
-                                                </button>-->
+                                            <button class="btn btn-info btn-xs" type="button" title="" ng-show="item.statusTypeID == 2"
+                                                    ng-click="changeStatusActive(item, $index)">
+                                                Kích hoạt
+                                            </button>
+                                            <button class="btn btn-danger btn-xs" type="button" title="Dừng Hoạt Động" ng-show="item.statusTypeID == 1"
+                                                    ng-click="changeStatusDeActive(item, $index)">
+                                                Ngừng HĐ
+                                            </button>
                                         </td>
                                         <td><img ng-src="{{item.imageURL}}" style="max-width: 80px; max-height: 80px;" /></td>
                                         <td>{{item.bookName}}</td>

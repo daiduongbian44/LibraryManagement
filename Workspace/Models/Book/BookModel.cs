@@ -22,6 +22,7 @@ namespace Models.Book
         public string Publisher { get; set; }
         public string Language { get; set; }
         public string ISBN { get; set; }
+        public int StatusTypeID { get; set; }
         public List<Author.AuthorModel> ListAuthor { get; set; }
     }
 }

@@ -9,6 +9,7 @@
         var Factory = {
             GetAllBooks: _getAll,
             SaveBook: _saveBook,
+            ChangeStatus: _changeStatus,
         };
         return Factory;
 
@@ -57,5 +58,29 @@
 
             return deferred.promise;
         }
+
+        function _changeStatus(book) {
+            var deferred = $q.defer();
+            var url = "/api/book/changebookstatus";
+
+            $http.post(url,
+                JSON.stringify(book),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            )
+            .success(function (response) {
+                deferred.resolve(response);
+                return response;
+            })
+            .error(function (errMessage, statusCode) {
+                var result = { isSuccess: false, status: statusCode, message: errMessage };
+                deferred.reject(result);
+                return result;
+            });
+
+            return deferred.promise;
+        }
+
     }
 })();

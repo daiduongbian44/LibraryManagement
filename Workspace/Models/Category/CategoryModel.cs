@@ -14,6 +14,7 @@ namespace Models.Category
         public string CategoryName { get; set; }
         public short CategoryLevel { get; set; }
         public string ImageURL { get; set; }
+        public int StatusTypeID { get; set; }
         public Nullable<int> ParentID { get; set; }
     }
 }

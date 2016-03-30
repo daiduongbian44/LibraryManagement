@@ -9,7 +9,8 @@
 
         var Factory = {
             GetAllCategories: _getAllCategories,
-            SaveCategory: _saveCategory
+            SaveCategory: _saveCategory,
+            ChangeStatus: _changeStatus,
         };
         return Factory;
 
@@ -41,6 +42,29 @@
         function _saveCategory(category) {
             var deferred = $q.defer();
             var url = "/api/category/savecategorysubject";
+
+            $http.post(url,
+                JSON.stringify(category),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            )
+            .success(function (response) {
+                deferred.resolve(response);
+                return response;
+            })
+            .error(function (errMessage, statusCode) {
+                var result = { isSuccess: false, status: statusCode, message: errMessage };
+                deferred.reject(result);
+                return result;
+            });
+
+            return deferred.promise;
+        }
+
+        function _changeStatus(category) {
+            var deferred = $q.defer();
+            var url = "/api/category/changecategorystatus";
 
             $http.post(url,
                 JSON.stringify(category),

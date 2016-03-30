@@ -17,11 +17,11 @@
         $scope.GridFnCreate = _createCategory;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
-        $scope.GridFnEdit = _editItem;
-        $scope.GridFnStop = _stopItem;
-        $scope.GridFnRestore = _restoreItem;
+        $scope.GridFnEdit = _editItem;    
         $scope.msgCategoryName = "";
         $scope.dataFinish = 0;
+        $scope.changeStatusActive = changeStatusActive;
+        $scope.changeStatusDeActive = changeStatusDeActive;
 
         var _listField;
 
@@ -148,11 +148,37 @@
             });
         }
 
-        function _stopItem(item, index) {
-
+        function changeStatusActive(item, index) {
+            item.statusTypeID = commonService.GetActive;
+            categoryService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
-        function _restoreItem(item, index) {
-
+        function changeStatusDeActive(item, index) {
+            item.statusTypeID = commonService.GetDeActive;
+            categoryService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
 
         $scope.GridDtOptions = DTOptionsBuilder.newOptions()

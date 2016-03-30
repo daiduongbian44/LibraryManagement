@@ -10,7 +10,8 @@
         var Factory = {
             GetAllUsers: _getAllUsers,
             GetAllRoles: _getAllRoles,
-            SaveUser: _saveUser
+            SaveUser: _saveUser,
+            ChangeStatus: _changeStatus,
         };
         return Factory;
 
@@ -66,6 +67,29 @@
         function _saveUser(user) {
             var deferred = $q.defer();
             var url = "/api/authen/saveuser";
+
+            $http.post(url,
+                JSON.stringify(user),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            )
+            .success(function (response) {
+                deferred.resolve(response);
+                return response;
+            })
+            .error(function (errMessage, statusCode) {
+                var result = { isSuccess: false, status: statusCode, message: errMessage };
+                deferred.reject(result);
+                return result;
+            });
+
+            return deferred.promise;
+        }
+
+        function _changeStatus(user) {
+            var deferred = $q.defer();
+            var url = "/api/user/changestatus";
 
             $http.post(url,
                 JSON.stringify(user),

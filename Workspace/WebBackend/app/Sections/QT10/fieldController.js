@@ -19,7 +19,8 @@
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
         $scope.GridFnEdit = _editItem;
-        $scope.GridFnDelete = _deleteItem;
+        $scope.changeStatusActive = changeStatusActive;
+        $scope.changeStatusDeActive = changeStatusDeActive;
 
         $scope.DataOrigin = null;
 
@@ -105,8 +106,37 @@
             });
         }
 
-        function _deleteItem(item, index) {
-
+        function changeStatusActive(item, index) {
+            item.statusTypeID = commonService.GetActive;
+            fieldService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
+        }
+        function changeStatusDeActive(item, index) {
+            item.statusTypeID = commonService.GetDeActive;
+            fieldService.ChangeStatus(item).then(
+                function (res) {
+                    if (res.status !== "error") {
+                        _loadData();
+                        $.notify("Đổi trạng thái thành công.", 'success');
+                    } else {
+                        $.notify(res.messages, 'error');
+                    }
+                },
+                function (error) {
+                    $.notify("Xảy ra lỗi khi đổi trạng thái.", 'error');
+                }
+            );
         }
 
         $scope.GridDtOptions = DTOptionsBuilder.newOptions()
