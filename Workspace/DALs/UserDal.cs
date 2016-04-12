@@ -2,6 +2,7 @@
 using DALs.Context;
 using Dapper;
 using Models.User;
+using Models.History;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -191,5 +192,42 @@ namespace DALs
             }
         }
 
+        /// <summary>
+        /// Get user-info to check borrowed history
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public UserInfoModel GetUserInfoByUserID(int userId) {
+            const string procName = "scr_Get_User_ByUserID";
+            try {
+                var param = new DynamicParameters();
+                param.Add("@UserID", dbType: DbType.Int32);
+
+                var con = DatabaseContext.getInstance().Connection;
+                var result = con.Query<UserInfoModel>(procName, param, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
+            } catch (Exception) {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get borrowed history of user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public BorrowHistoryUserModel GetBorrowHistoryByUserID(int userId) {
+            const string procName = "scr_Get_BorrowHistory_ByUserID";
+            try {
+                var param = new DynamicParameters();
+                param.Add("@UserID", dbType: DbType.Int32);
+
+                var con = DatabaseContext.getInstance().Connection;
+                var result = con.Query<BorrowHistoryUserModel>(procName, param, commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
+            } catch (Exception) {
+                throw;
+            }
+        }
     }
 }

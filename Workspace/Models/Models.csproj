@@ -45,8 +45,10 @@
     <Compile Include="Book\BookModel.cs" />
     <Compile Include="Category\CategoryModel.cs" />
     <Compile Include="EmailJob\EmailModel.cs" />
+    <Compile Include="History\BorrowHistoryUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\RoleModel.cs" />
+    <Compile Include="User\UserInfoModel.cs" />
     <Compile Include="User\UserModel.cs" />
     <Compile Include="User\UserPassword.cs" />
   </ItemGroup>

@@ -220,6 +220,11 @@
     <Content Include="app\Sections\QT70\view.html" />
     <Content Include="app\Sections\QT90\borrowController.js" />
     <Content Include="app\Sections\QT90\borrowService.js" />
+    <Content Include="app\Sections\QT90\create\controller.js" />
+    <Content Include="app\Sections\QT90\create\service.js" />
+    <Content Include="app\Sections\QT90\create\view.html" />
+    <Content Include="app\Sections\QT90\user-history\controller.js" />
+    <Content Include="app\Sections\QT90\user-history\view.html" />
     <Content Include="app\Sections\QT90\view.html" />
     <Content Include="app\Sections\samplePages\chart.html" />
     <Content Include="app\Sections\samplePages\chartController.js" />

@@ -207,7 +207,19 @@ app.config([
             }
         }).state('dashboard.QT90', {
             templateUrl: 'app/Sections/QT90/view.html',
-            url: '/QT90'
+            url: '/QT90',
+            controller: 'borrowController',
+            resolve: {
+                loadMyFile: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'LibManageApp',
+                        files: [
+                            'app/Sections/QT90/borrowController.js',
+                            'app/Sections/QT90/borrowService.js',
+                        ]
+                    });
+                }
+            }
         }).state('dashboard.QT110', {
             templateUrl: 'app/Sections/QT110/view.html',
             url: '/QT110'

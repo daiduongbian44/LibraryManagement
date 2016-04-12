@@ -14,8 +14,8 @@
         _loadData();
 
         $scope.FnClear = _initSearch;
-        $scope.FnSearch = _searchCategory;
-        $scope.GridFnCreate = _createCategory;
+        $scope.FnSearch = _searchBorrowBook;
+        $scope.GridFnCreate = _createBorrowBook;
         $scope.GridSelectedIndex = -1;
         $scope.GridFnClickRow = _clickRow;
         $scope.GridFnEdit = _editItem;
@@ -33,45 +33,45 @@
 
         function _loadData() {
             //$scope.GridListItem = null;
-            fieldService.GetAllCategories().then(
-                function (response) {
-                    //console.log(response.data);
-                    $scope.GridListItem = response.data;
-                    $scope.DataOrigin = response.data;
-                },
-                function (error) {
-                    $scope.GridListItem = null;
-                    $scope.DataOrigin = null;
-                }
-            );
+            //fieldService.GetAllCategories().then(
+            //    function (response) {
+            //        //console.log(response.data);
+            //        $scope.GridListItem = response.data;
+            //        $scope.DataOrigin = response.data;
+            //    },
+            //    function (error) {
+            //        $scope.GridListItem = null;
+            //        $scope.DataOrigin = null;
+            //    }
+            //);
         }
 
-        function _searchCategory() {
-            if ($scope.search.CategoryName === "") {
-                $scope.msgCategoryName = "Nhập tên chuyên ngành";
-                return;
-            }
-            $scope.msgCategoryName = "";
-            $scope.GridListItem = [];
-            $scope.DataOrigin.forEach(function (item) {
-                if (commonService.ContainText(item.categoryName, $scope.search.CategoryName)) {
-                    $scope.GridListItem.push(item);
-                }
-            });
+        function _searchBorrowBook() {
+            //if ($scope.search.CategoryName === "") {
+            //    $scope.msgCategoryName = "Nhập tên chuyên ngành";
+            //    return;
+            //}
+            //$scope.msgCategoryName = "";
+            //$scope.GridListItem = [];
+            //$scope.DataOrigin.forEach(function (item) {
+            //    if (commonService.ContainText(item.categoryName, $scope.search.CategoryName)) {
+            //        $scope.GridListItem.push(item);
+            //    }
+            //});
         }
 
-        function _createCategory() {
+        function _createBorrowBook() {
             $ocLazyLoad.load({
                 name: 'LibManageApp',
                 files:
                 [
-                    'app/Sections/QT10/create/controller.js',
+                    'app/Sections/QT90/create/controller.js',
                 ]
             }).then(function () {
                 $modal.open({
-                    templateUrl: "app/Sections/QT10/create/view.html",
-                    controller: 'createFieldController',
-                    size: "sm",
+                    templateUrl: "app/Sections/QT90/create/view.html",
+                    controller: 'orderBorrowCreateController',
+                    size: "lg",
                 });
             });
         }
@@ -85,24 +85,24 @@
         }
 
         function _editItem(item) {
-            $ocLazyLoad.load({
-                name: 'LibManageApp',
-                files:
-                [
-                    'app/Sections/QT10/edit/controller.js',
-                ]
-            }).then(function () {
-                $modal.open({
-                    templateUrl: "app/Sections/QT10/edit/view.html",
-                    controller: 'editFieldController',
-                    size: "sm",
-                    resolve: {
-                        FieldObject: function () {
-                            return item;
-                        }
-                    }
-                });
-            });
+            //$ocLazyLoad.load({
+            //    name: 'LibManageApp',
+            //    files:
+            //    [
+            //        'app/Sections/QT10/edit/controller.js',
+            //    ]
+            //}).then(function () {
+            //    $modal.open({
+            //        templateUrl: "app/Sections/QT10/edit/view.html",
+            //        controller: 'editFieldController',
+            //        size: "sm",
+            //        resolve: {
+            //            FieldObject: function () {
+            //                return item;
+            //            }
+            //        }
+            //    });
+            //});
         }
 
         function _deleteItem(item, index) {
@@ -124,37 +124,37 @@
             ]);
 
         // receive an event from modal and save data
-        $scope.$on("CREATE_FIELD", function (event, dt) {
-            fieldService.SaveField(dt.data).then(
-                function (res) {
-                    if (res.status !== "error") {
-                        _loadData();
-                        alert("Thêm chuyên ngành thành công.");
-                    } else {
-                        alert(res.messages);
-                    }
-                },
-                function (error) {
-                    alert("Xảy ra lỗi khi thêm chuyên ngành.");
-                }
-            );
+        $scope.$on("CREATE_BORROWBOOK", function (event, dt) {
+            //fieldService.SaveField(dt.data).then(
+            //    function (res) {
+            //        if (res.status !== "error") {
+            //            _loadData();
+            //            alert("Thêm chuyên ngành thành công.");
+            //        } else {
+            //            alert(res.messages);
+            //        }
+            //    },
+            //    function (error) {
+            //        alert("Xảy ra lỗi khi thêm chuyên ngành.");
+            //    }
+            //);
         });
 
         // receive an event from modal and save data
-        $scope.$on("EDIT_FIELD", function (event, dt) {
-            fieldService.SaveField(dt.data).then(
-                function (res) {
-                    if (res.status !== "error") {
-                        _loadData();
-                        alert("Sửa chuyên ngành thành công.");
-                    } else {
-                        alert(res.messages);
-                    }
-                },
-                function (error) {
-                    alert("Xảy ra lỗi khi sửa chuyên ngành.");
-                }
-            );
+        $scope.$on("EDIT_BORROWBOOK", function (event, dt) {
+            //fieldService.SaveField(dt.data).then(
+            //    function (res) {
+            //        if (res.status !== "error") {
+            //            _loadData();
+            //            alert("Sửa chuyên ngành thành công.");
+            //        } else {
+            //            alert(res.messages);
+            //        }
+            //    },
+            //    function (error) {
+            //        alert("Xảy ra lỗi khi sửa chuyên ngành.");
+            //    }
+            //);
         });
     }
 })();

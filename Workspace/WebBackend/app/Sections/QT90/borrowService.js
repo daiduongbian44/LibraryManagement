@@ -1,11 +1,11 @@
 ﻿(function () {
     'use strict'
 
-    angular.module('LibManageApp').factory('fieldService', fieldService);
+    angular.module('LibManageApp').factory('borrowService', borrowService);
 
-    fieldService.$inject = ['$q', '$http', 'ngAuthSettings'];
+    borrowService.$inject = ['$q', '$http', 'ngAuthSettings'];
 
-    function fieldService($q, $http, ngAuthSettings) {
+    function borrowService($q, $http, ngAuthSettings) {
 
         var _CategoryLevel = 1;
 
